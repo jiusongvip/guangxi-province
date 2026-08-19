@@ -1,0 +1,48 @@
+---
+interface Props {
+  solid?: boolean;
+}
+const { solid = false } = Astro.props;
+
+const links = [
+  { href: "#destinations", label: "Destinations" },
+  { href: "#itineraries", label: "Itineraries" },
+  { href: "#food", label: "Food" },
+  { href: "#best-time", label: "Best Time" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+<nav id="main-nav" class={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solid ? "nav-solid" : "bg-transparent"}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-[72px]">
+      <a href="/" class="nav-logo text-lg font-bold tracking-tight text-white drop-shadow-sm">
+        Guangxi Guide
+      </a>
+      <div class="hidden lg:flex items-center gap-1">
+        {links.map((l) => (
+          <a href={l.href} class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg transition-colors">{l.label}</a>
+        ))}
+        <a href="#plan" class="nav-cta ml-3 px-4 py-2 text-sm font-semibold text-brand-900 bg-white rounded-full hover:bg-brand-50 transition-colors">
+          Plan Your Trip
+        </a>
+      </div>
+      <button id="mobile-menu-btn" class="nav-mobile-btn lg:hidden text-white p-2" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-stone-100 shadow-lg">
+    <div class="px-4 py-3 space-y-1">
+      {links.map((l) => (
+        <a href={l.href} class="block px-3 py-2 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">{l.label}</a>
+      ))}
+      <div class="border-t border-stone-100 my-2"></div>
+      <a href="/about/" class="block px-3 py-2 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">About</a>
+      <a href="/contact/" class="block px-3 py-2 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">Contact</a>
+    </div>
+  </div>
+</nav>

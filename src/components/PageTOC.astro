@@ -1,0 +1,33 @@
+---
+const toc = [
+  { href: "#why", label: "Why Guangxi" },
+  { href: "#matcher", label: "Find Your Match" },
+  { href: "#map", label: "Map" },
+  { href: "#destinations", label: "Destinations" },
+  { href: "#itineraries", label: "Itineraries" },
+  { href: "#budget", label: "Budget" },
+  { href: "#food", label: "Food" },
+  { href: "#shopping", label: "Souvenirs" },
+  { href: "#best-time", label: "Best Time" },
+  { href: "#packing", label: "Packing" },
+  { href: "#stay", label: "Where to Stay" },
+  { href: "#transport", label: "Getting There" },
+  { href: "#culture", label: "Culture" },
+  { href: "#safety", label: "Safety" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+<nav class="bg-white border-b border-stone-200" aria-label="On this page">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 overflow-x-auto">
+    <div class="flex gap-2 whitespace-nowrap">
+      {toc.map((t) => (
+        <a
+          href={t.href}
+          class="px-3 py-1.5 rounded-full text-xs font-medium text-stone-600 hover:text-brand-700 hover:bg-brand-50 border border-stone-200 transition-colors"
+        >
+          {t.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>

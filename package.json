@@ -1,0 +1,24 @@
+{
+  "name": "guangxi-province",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "start": "astro dev",
+    "build": "npx astro build && node scripts/fix-sitemap-home.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource/outfit": "^5.1.0",
+    "astro": "^5.7.10",
+    "motion": "^12.23.25",
+    "sharp": "^0.35.3",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.6",
+    "tailwindcss": "^4.1.6"
+  }
+}

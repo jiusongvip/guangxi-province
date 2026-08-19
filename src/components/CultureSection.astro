@@ -1,0 +1,68 @@
+---
+const cultures = [
+  { name: "The Zhuang", chinese: "壮族", body: "China's largest ethnic minority, about a third of Guangxi's population. Their Sanyuesan festival each spring fills villages with antiphonal singing, embroidered dress, bronze drums and the five-color sticky rice." },
+  { name: "The Yao", chinese: "瑶族", body: "Yao villages cluster in the Longji terraces and the northwest. In Huangluo, women of the Red Yao keep waist-length hair as a cultural signature, and oil tea is the household staple." },
+  { name: "The Dong", chinese: "侗族", body: "The Dong built the Chengyang Wind and Rain Bridge near Sanjiang without a single nail, and their drum towers anchor every village. Dong polyphonic song (侗族大歌) is UNESCO-listed." },
+  { name: "The Jing", chinese: "京族", body: "China's only maritime minority, living on the coast near Dongxing and descended from Vietnamese fishing communities. Their Ha festival honors the sea with songs and the single-stringed duxianqin." },
+];
+
+const festivals = [
+  { name: "Sanyuesan", chinese: "三月三", when: "3rd day of the 3rd lunar month, usually April", what: "The Zhuang's biggest festival: song gatherings, embroidered-ball tossing, bamboo-pole dancing and five-color sticky rice. Celebrated across Guangxi, best in the countryside." },
+  { name: "Longji Clothes-Drying Festival", chinese: "龙脊晒衣节", when: "6th day of the 6th lunar month", what: "Red Yao families on the Longji terraces hang out their embroidered festival dress to air, turning the hillsides into a textile show." },
+  { name: "Dong Song Festival", chinese: "侗族大歌", when: "Varies by village", what: "Polyphonic Dong choirs perform in Sanjiang's drum-tower squares. Combined with a Chengyang bridge visit, it is a full cultural day." },
+  { name: "Jing Ha Festival", chinese: "京族哈节", when: "Summer, by the lunar calendar", what: "The Jing people's sea festival near Dongxing, with fishing rituals, singing and the one-stringed duxianqin." },
+];
+---
+<section id="culture" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+      <div class="lg:col-span-5">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+          Twelve peoples, one province
+        </h2>
+        <p class="text-stone-500 text-lg mt-4 leading-relaxed">
+          Guangxi is the Zhuang autonomous region, home to China's largest ethnic minority and eleven other indigenous groups. The culture is not a museum piece: it is in the terraces, the festivals and the food.
+        </p>
+      </div>
+      <div class="lg:col-span-7">
+        {cultures.map((c) => (
+          <div class="flex gap-6 py-6 border-t border-stone-200 last:border-b">
+            <div class="shrink-0 w-32">
+              <h3 class="text-base font-bold text-stone-900">{c.name} <span class="text-stone-400 font-medium">{c.chinese}</span></h3>
+            </div>
+            <p class="text-stone-600 text-sm md:text-base leading-relaxed">{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <details class="bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden group">
+      <summary class="cursor-pointer flex items-center justify-between px-7 py-5 text-lg font-bold text-stone-900 list-none">
+        Festivals worth timing your trip around
+        <svg class="w-5 h-5 text-stone-400 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="px-7 pb-7">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[560px] text-left text-sm">
+            <thead>
+              <tr class="border-b border-stone-200">
+                <th class="py-3 pr-4 font-semibold text-stone-900">Festival</th>
+                <th class="py-3 pr-4 font-semibold text-stone-900">When</th>
+                <th class="py-3 font-semibold text-stone-900">What happens</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-100">
+              {festivals.map((f) => (
+                <tr>
+                  <td class="py-3 pr-4 text-stone-700 font-medium whitespace-nowrap">{f.name} <span class="text-stone-400">{f.chinese}</span></td>
+                  <td class="py-3 pr-4 text-stone-600 whitespace-nowrap">{f.when}</td>
+                  <td class="py-3 text-stone-600">{f.what}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>

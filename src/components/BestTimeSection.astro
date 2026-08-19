@@ -1,0 +1,55 @@
+---
+const seasons = [
+  {
+    when: "Oct to April",
+    label: "The sweet spot",
+    body: "Dry and mild across the coast and the karst. The best overall window for Guilin, Yangshuo, Beihai and the terraces.",
+    good: true,
+  },
+  {
+    when: "April to June",
+    label: "Terraces mirror season",
+    body: "Longji's paddies are flooded with water, turning them into reflective mirrors at sunrise. Spring greenery across the region.",
+    good: true,
+  },
+  {
+    when: "June to October",
+    label: "Waterfall season",
+    body: "Detian Waterfall runs at full flow after the rains. Hot and humid elsewhere, but the borderland is at its best.",
+    good: false,
+  },
+  {
+    when: "September to October",
+    label: "Golden harvest",
+    body: "The Longji terraces turn gold before the autumn harvest. A second peak window for photographers.",
+    good: true,
+  },
+];
+---
+<section id="best-time" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+          When to go
+        </h2>
+        <p class="text-stone-500 text-lg mt-4 leading-relaxed">
+          Guangxi has no hard winter and no altitude, so there is almost always a good reason to be here. The one rule: avoid the rainy May and the humid peak of July and August unless you are chasing waterfalls.
+        </p>
+      </div>
+      <div class="lg:col-span-7 space-y-4">
+        {seasons.map((s) => (
+          <div class="flex gap-5 p-5 rounded-xl border border-stone-200">
+            <div class="shrink-0 w-32">
+              <p class="text-sm font-semibold text-stone-900">{s.when}</p>
+            </div>
+            <div>
+              <p class="font-semibold text-stone-900">{s.label}</p>
+              <p class="text-sm text-stone-600 mt-1 leading-relaxed">{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

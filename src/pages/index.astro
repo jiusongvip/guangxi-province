@@ -1,0 +1,128 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import HeroSection from "../components/HeroSection.astro";
+import PageTOC from "../components/PageTOC.astro";
+import QuickFacts from "../components/QuickFacts.astro";
+import WhyGuangxi from "../components/WhyGuangxi.astro";
+import DestinationMatcher from "../components/DestinationMatcher.astro";
+import MapSection from "../components/MapSection.astro";
+import DestinationsSection from "../components/DestinationsSection.astro";
+import QuickMatrix from "../components/QuickMatrix.astro";
+import TripPlanner from "../components/TripPlanner.astro";
+import BudgetCalculator from "../components/BudgetCalculator.astro";
+import CostSection from "../components/CostSection.astro";
+import CompareSection from "../components/CompareSection.astro";
+import FoodSection from "../components/FoodSection.astro";
+import ShoppingSection from "../components/ShoppingSection.astro";
+import BestTimeSection from "../components/BestTimeSection.astro";
+import PackingSection from "../components/PackingSection.astro";
+import AccommodationSection from "../components/AccommodationSection.astro";
+import TransportSection from "../components/TransportSection.astro";
+import PlanSection from "../components/PlanSection.astro";
+import CultureSection from "../components/CultureSection.astro";
+import SafetySection from "../components/SafetySection.astro";
+import GallerySection from "../components/GallerySection.astro";
+import TrustSection from "../components/TrustSection.astro";
+import FAQSection from "../components/FAQSection.astro";
+import ChecklistSection from "../components/ChecklistSection.astro";
+import CTASection from "../components/CTASection.astro";
+import { faqs } from "../data/faq";
+import { itineraries } from "../data/destinations";
+import { faqSchema } from "../utils/schema";
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://www.guangxi-province.com/#author",
+      name: "Guangxi Guide Team",
+      jobTitle: "Independent Travel Editorial Team",
+      description:
+        "Independent travel writers who have collectively lived in and traveled across all 14 prefectures of Guangxi for over a decade.",
+      worksFor: {
+        "@type": "Organization",
+        name: "Guangxi Province Travel Guide",
+        url: "https://www.guangxi-province.com",
+      },
+    },
+    {
+      "@type": "Article",
+      headline: "Guangxi Province Travel Guide 2026: Beyond Guilin",
+      description:
+        "Plan your trip to Guangxi Province, China. Discover Li River karst, Beihai beaches, Detian Waterfall, Longji rice terraces, luosifen food and Zhuang culture, with itineraries, budgets and insider tips.",
+      author: { "@id": "https://www.guangxi-province.com/#author" },
+      datePublished: "2026-08-19",
+      dateModified: "2026-08-19",
+      image: "https://www.guangxi-province.com/images/og-guangxi.webp",
+    },
+    {
+      "@type": "TouristDestination",
+      name: "Guangxi Province",
+      description:
+        "Comprehensive travel guide to Guangxi Province, China. Discover karst landscapes, coastal beaches, a transnational waterfall, rice terraces and Zhuang culture.",
+      touristType: ["Nature Lovers", "Food Travelers", "Beach Travelers", "Photographers", "Cultural Travelers"],
+      containedInPlace: { "@type": "Country", name: "China" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.guangxi-province.com" },
+      ],
+    },
+    {
+      "@type": "ItemList",
+      name: "Guangxi travel itineraries",
+      itemListElement: itineraries.map((it, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: `${it.days}-day Guangxi itinerary: ${it.title}`,
+        description: `${it.route} — ${it.summary.join(" ")}`,
+      })),
+    },
+    faqSchema(faqs),
+  ],
+};
+---
+
+<BaseLayout
+  title="Guangxi Province Travel Guide 2026: Beyond Guilin"
+  description="Plan your Guangxi trip beyond Guilin: Li River karst, Beihai beaches, Detian Waterfall, Longji rice terraces, luosifen food and Zhuang culture."
+  ogImage="/images/og-guangxi.webp"
+  ogType="website"
+>
+  <slot name="head">
+    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
+  </slot>
+
+  <Nav />
+  <HeroSection />
+  <PageTOC />
+  <QuickFacts />
+  <WhyGuangxi />
+  <DestinationMatcher />
+  <MapSection />
+  <DestinationsSection />
+  <QuickMatrix />
+  <TripPlanner />
+  <BudgetCalculator />
+  <CostSection />
+  <CompareSection />
+  <FoodSection />
+  <ShoppingSection />
+  <BestTimeSection />
+  <PackingSection />
+  <AccommodationSection />
+  <TransportSection />
+  <PlanSection />
+  <CultureSection />
+  <SafetySection />
+  <GallerySection />
+  <TrustSection />
+  <FAQSection />
+  <ChecklistSection />
+  <CTASection />
+  <Footer />
+</BaseLayout>

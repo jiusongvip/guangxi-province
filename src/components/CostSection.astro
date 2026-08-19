@@ -1,0 +1,58 @@
+---
+const groups = [
+  {
+    title: "Cruises and rafts",
+    items: [
+      { name: "Li River cruise (4-star)", price: "CNY 350-500" },
+      { name: "Li River cruise (3-star)", price: "CNY 190" },
+      { name: "Yulong River bamboo raft", price: "CNY 250-350" },
+      { name: "Two Rivers and Four Lakes night cruise", price: "CNY 190" },
+    ],
+  },
+  {
+    title: "Entry tickets",
+    items: [
+      { name: "Longji Rice Terraces", price: "CNY 80" },
+      { name: "Reed Flute Cave", price: "CNY 90" },
+      { name: "Detian Waterfall", price: "CNY 80" },
+      { name: "Elephant Trunk Hill", price: "Free" },
+    ],
+  },
+  {
+    title: "Transport",
+    items: [
+      { name: "Weizhou Island ferry", price: "CNY 150 each way" },
+      { name: "Guilin-Guangzhou high-speed rail", price: "CNY 150-250" },
+      { name: "Beihai-Nanning rail", price: "CNY 60-100" },
+    ],
+  },
+];
+---
+<section class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-14">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        What the big items cost
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        The handful of fixed costs that drive most of a Guangxi budget. 2026 prices, per person.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {groups.map((g) => (
+        <div class="bg-white rounded-2xl border border-stone-200 p-6">
+          <h3 class="font-bold text-stone-900">{g.title}</h3>
+          <ul class="mt-4 space-y-3">
+            {g.items.map((it) => (
+              <li class="flex items-baseline justify-between gap-3">
+                <span class="text-sm text-stone-600">{it.name}</span>
+                <span class="text-sm font-semibold text-brand-700 shrink-0">{it.price}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

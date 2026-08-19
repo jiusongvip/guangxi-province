@@ -1,0 +1,59 @@
+---
+const guangxi = [
+  "Compact: the essentials fit in 7 days",
+  "No altitude: 0 to 1,100m, zero acclimatization",
+  "Three landscapes: karst, coast and a Vietnam border",
+  "Noodle culture: luosifen, Guilin rice noodles, beer fish",
+  "Easier, cheaper entry point to China",
+];
+const yunnan = [
+  "Spread out: plan 8 to 14 days minimum",
+  "High altitude: Shangri-La sits at 3,400m",
+  "Snow peaks, ancient towns and tropical rainforest",
+  "25 ethnic groups, Across the Bridge Noodles",
+  "More epic, but harder on the body and the schedule",
+];
+---
+<section id="compare" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-14">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        Guangxi or Yunnan?
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        The two southwest giants often get compared. Here is the honest split.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="rounded-2xl border-2 border-brand-600 bg-brand-50/50 p-8">
+        <h3 class="text-xl font-bold text-brand-800">Choose Guangxi if...</h3>
+        <ul class="mt-5 space-y-3">
+          {guangxi.map((g) => (
+            <li class="flex gap-3 text-stone-700">
+              <svg class="w-5 h-5 text-brand-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span class="text-sm md:text-base leading-relaxed">{g}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="rounded-2xl border border-stone-200 bg-stone-50 p-8">
+        <h3 class="text-xl font-bold text-stone-700">Choose Yunnan if...</h3>
+        <ul class="mt-5 space-y-3">
+          {yunnan.map((y) => (
+            <li class="flex gap-3 text-stone-600">
+              <svg class="w-5 h-5 text-stone-400 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span class="text-sm md:text-base leading-relaxed">{y}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 bg-stone-900 rounded-2xl p-8">
+      <p class="text-stone-200 text-base md:text-lg leading-relaxed max-w-4xl">
+        <span class="font-semibold text-white">The short answer:</span> for a first or shorter trip to China, Guangxi is the easier win. It is compact, altitude-free and cheaper. Save Yunnan for when you have two weeks and the appetite for highland distances.
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,141 @@
+---
+const tiers = [
+  { id: "budget", label: "Budget", daily: 250, note: "Guesthouses, street food, trains" },
+  { id: "mid", label: "Mid-range", daily: 550, note: "Boutique stays, the cruise, restaurants" },
+  { id: "comfort", label: "Comfort", daily: 900, note: "Heritage hotels, private drivers" },
+];
+const addons = [
+  { id: "cruise", label: "Li River 4-star cruise", price: 350 },
+  { id: "ferry", label: "Weizhou Island ferry + day", price: 400 },
+  { id: "detian", label: "Detian Waterfall detour", price: 600 },
+];
+---
+<section id="budget" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        What will it cost?
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Pick a comfort level and a length, add the big-ticket extras, and get a per-person estimate in seconds.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-7 space-y-8">
+        <div>
+          <p class="text-sm font-semibold text-stone-900 mb-3">Comfort level</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {tiers.map((t, i) => (
+              <button
+                class={`budget-tier text-left p-4 rounded-xl border-2 transition-all ${i === 1 ? "border-brand-600 bg-brand-50" : "border-stone-200 hover:border-brand-300"}`}
+                data-tier={t.id}
+                data-daily={t.daily}
+              >
+                <p class="font-semibold text-stone-900">{t.label}</p>
+                <p class="text-sm text-stone-500 mt-1">{t.note}</p>
+                <p class="text-sm font-medium text-brand-700 mt-2">CNY {t.daily}/day</p>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-baseline justify-between mb-3">
+            <p class="text-sm font-semibold text-stone-900">Trip length</p>
+            <p class="text-sm font-medium text-brand-700"><span id="budget-days-label">7</span> days</p>
+          </div>
+          <input id="budget-days" type="range" min="3" max="14" step="1" value="7" class="w-full accent-brand-700" />
+          <div class="flex justify-between text-xs text-stone-400 mt-1">
+            <span>3 days</span>
+            <span>14 days</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-sm font-semibold text-stone-900 mb-3">Add the big-ticket extras</p>
+          <div class="space-y-2">
+            {addons.map((a) => (
+              <label class="flex items-center gap-3 p-3 rounded-lg border border-stone-200 cursor-pointer hover:border-brand-300">
+                <input type="checkbox" class="budget-addon w-4 h-4 accent-brand-700" data-price={a.price} />
+                <span class="text-sm text-stone-700 flex-1">{a.label}</span>
+                <span class="text-sm font-medium text-stone-500">+CNY {a.price}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="bg-brand-950 rounded-2xl p-8 sticky top-24">
+          <p class="text-sm text-brand-200">Estimated per person</p>
+          <p class="text-4xl md:text-5xl font-bold text-white mt-3 tracking-tight">
+            CNY <span id="budget-total">3,850</span>
+          </p>
+          <p class="text-brand-200/70 text-sm mt-3 leading-relaxed">
+            Based on <span id="budget-tier-label">mid-range</span> at CNY <span id="budget-daily-label">550</span>/day over <span id="budget-days-label-2">7</span> days, plus your extras.
+          </p>
+          <p class="text-brand-200/50 text-xs mt-5 leading-relaxed">
+            Excludes international flights to China. Prices are 2026 averages and move with the season.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var tier = "mid";
+    var daily = 550;
+    var days = 7;
+    var addonTotal = 0;
+
+    var totalEl = document.getElementById("budget-total");
+    var daysLabel = document.getElementById("budget-days-label");
+    var daysLabel2 = document.getElementById("budget-days-label-2");
+    var dailyLabel = document.getElementById("budget-daily-label");
+    var tierLabel = document.getElementById("budget-tier-label");
+
+    function render() {
+      var total = daily * days + addonTotal;
+      totalEl.textContent = total.toLocaleString("en-US");
+      daysLabel.textContent = String(days);
+      daysLabel2.textContent = String(days);
+      dailyLabel.textContent = String(daily);
+      tierLabel.textContent = tier;
+    }
+
+    document.querySelectorAll(".budget-tier").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".budget-tier").forEach(function (b) {
+          b.classList.remove("border-brand-600", "bg-brand-50");
+          b.classList.add("border-stone-200");
+        });
+        btn.classList.add("border-brand-600", "bg-brand-50");
+        btn.classList.remove("border-stone-200");
+        tier = btn.getAttribute("data-tier");
+        daily = Number(btn.getAttribute("data-daily"));
+        render();
+      });
+    });
+
+    var range = document.getElementById("budget-days");
+    range.addEventListener("input", function () {
+      days = Number(range.value);
+      render();
+    });
+
+    document.querySelectorAll(".budget-addon").forEach(function (cb) {
+      cb.addEventListener("change", function () {
+        addonTotal = 0;
+        document.querySelectorAll(".budget-addon:checked").forEach(function (c) {
+          addonTotal += Number(c.getAttribute("data-price"));
+        });
+        render();
+      });
+    });
+
+    render();
+  })();
+</script>

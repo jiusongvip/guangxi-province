@@ -1,0 +1,105 @@
+---
+const routes = [
+  { from: "Guilin", to: "Yangshuo", time: "30 min", mode: "rail" },
+  { from: "Guilin", to: "Liuzhou", time: "1 h", mode: "rail" },
+  { from: "Liuzhou", to: "Nanning", time: "1 h", mode: "rail" },
+  { from: "Guilin", to: "Nanning", time: "3 h", mode: "rail" },
+  { from: "Nanning", to: "Beihai", time: "1.5 h", mode: "rail" },
+  { from: "Nanning", to: "Chongzuo", time: "1.5 h", mode: "rail" },
+  { from: "Guangzhou", to: "Guilin", time: "2.5 h", mode: "rail" },
+];
+---
+<section id="transport" class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        Getting to and around Guangxi
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Two airports, one high-speed rail spine, and short hops between cities. Most of the region connects in under three hours.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+      <div class="bg-white rounded-2xl border border-stone-200 p-7">
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">By air</p>
+        <h3 class="text-lg font-bold text-stone-900 mt-2">Two gateways</h3>
+        <p class="text-sm text-stone-600 mt-3 leading-relaxed">
+          <span class="font-medium text-stone-800">Guilin Liangjiang (KWL)</span> serves the north and the classic loop; <span class="font-medium text-stone-800">Nanning Wuxu (NNG)</span> is the southern hub and the jump-off for Chongzuo and Beihai.
+        </p>
+      </div>
+      <div class="bg-white rounded-2xl border border-stone-200 p-7">
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">By rail</p>
+        <h3 class="text-lg font-bold text-stone-900 mt-2">The high-speed spine</h3>
+        <p class="text-sm text-stone-600 mt-3 leading-relaxed">
+          Guilin, Liuzhou, Nanning and Beihai sit on one high-speed line. Book on the official 12306 app or Trip.com; English interfaces are available on both.
+        </p>
+      </div>
+      <div class="bg-white rounded-2xl border border-stone-200 p-7">
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">By road</p>
+        <h3 class="text-lg font-bold text-stone-900 mt-2">Buses and cars</h3>
+        <p class="text-sm text-stone-600 mt-3 leading-relaxed">
+          Longji, Huangyao and Detian sit off the rail line. Public buses or a private driver (CNY 300-600/day) cover the last stretch.
+        </p>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+      <div class="px-7 py-5 border-b border-stone-200">
+        <h3 class="text-lg font-bold text-stone-900">Key rail times</h3>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <tbody class="divide-y divide-stone-100">
+            {routes.map((r) => (
+              <tr class="hover:bg-brand-50/40">
+                <td class="px-7 py-3.5 text-stone-700 font-medium whitespace-nowrap">{r.from} → {r.to}</td>
+                <td class="px-7 py-3.5 text-stone-500">{r.time}</td>
+                <td class="px-7 py-3.5 text-stone-400 text-xs uppercase tracking-wider">high-speed rail</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <details class="bg-white rounded-2xl border border-stone-200 overflow-hidden mb-6 group">
+      <summary class="cursor-pointer flex items-center justify-between px-7 py-5 text-lg font-bold text-stone-900 list-none">
+        Buying train tickets as a foreigner
+        <svg class="w-5 h-5 text-stone-400 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="px-7 pb-7 space-y-3">
+        <p class="text-sm text-stone-600 leading-relaxed">
+          <span class="font-medium text-stone-800">Easiest: <a href="https://www.trip.com/" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:text-brand-800 underline">Trip.com</a>.</span> The English version of Ctrip sells China rail tickets for a small service fee, with an English interface and foreign-card payment. You pick up tickets automatically by scanning your passport at the station.
+        </p>
+        <p class="text-sm text-stone-600 leading-relaxed">
+          <span class="font-medium text-stone-800">Cheapest: the <a href="https://www.12306.cn/" target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:text-brand-800 underline">12306 app</a>.</span> The official app accepts foreign passports, but you must verify your identity in person at a station window once. After that you can buy and board with the app.
+        </p>
+        <p class="text-sm text-stone-600 leading-relaxed">
+          <span class="font-medium text-stone-800">Seat classes.</span> Second class (二等座) is comfortable and cheap; first class (一等座) has wider seats. Both are far better than flying for these distances. Tickets open about 15 days ahead and sell fast around Chinese holidays.
+        </p>
+      </div>
+    </details>
+
+    <details class="bg-white rounded-2xl border border-stone-200 overflow-hidden group">
+      <summary class="cursor-pointer flex items-center justify-between px-7 py-5 text-lg font-bold text-stone-900 list-none">
+        Getting around cities and the last mile
+        <svg class="w-5 h-5 text-stone-400 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="px-7 pb-7 space-y-3">
+        <p class="text-sm text-stone-600 leading-relaxed">
+          <span class="font-medium text-stone-800">Ride-hailing:</span> Didi (滴滴) is the default and works with an English interface and foreign cards. It is cheap, and drivers use the in-app translation. Use it instead of flagging unlicensed taxis at stations.
+        </p>
+        <p class="text-sm text-stone-600 leading-relaxed">
+          <span class="font-medium text-stone-800">Metro and buses:</span> Nanning has a modern metro; Guilin, Liuzhou and Beihai run on buses and ride-hailing. Public transport signs are increasingly bilingual in tourist areas.
+        </p>
+        <p class="text-sm text-stone-600 leading-relaxed">
+          <span class="font-medium text-stone-800">Scooters and bikes:</span> In Yangshuo and on Weizhou Island, rent an e-scooter (CNY 60-100/day) to explore at your own pace. It is the single best way to see the countryside.
+        </p>
+        <p class="text-sm text-stone-600 leading-relaxed">
+          <span class="font-medium text-stone-800">Private drivers:</span> For off-rail stops like Longji, Huangyao and Detian, a private car runs CNY 300-600 per day. Your guesthouse can usually arrange one for less than a tour desk.
+        </p>
+      </div>
+    </details>
+  </div>
+</section>

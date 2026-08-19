@@ -1,0 +1,144 @@
+---
+const dishes = [
+  { name: "Guilin rice noodles", chinese: "桂林米粉", place: "Guilin", price: "CNY 8-15", note: "The breakfast staple: rice noodles in a light broth with braised beef, fried pork, pickled beans, peanuts and scallion. Order it dry (卤菜粉) with a side of soup, and eat it standing, like a local." },
+  { name: "Laoyoufen", chinese: "老友粉", place: "Nanning", price: "CNY 10-18", note: "Nanning's answer to comfort food: rice noodles in a sour-spicy broth built on fermented black beans, pickled bamboo shoot, garlic and chili, wok-fried before the soup goes in." },
+  { name: "Beer fish", chinese: "啤酒鱼", place: "Yangshuo", price: "CNY 70-120", note: "River carp braised with beer, tomato and chili. The signature of Yangshuo; order it at a riverside restaurant outside West Street for a fairer price." },
+  { name: "Lemon duck", chinese: "柠檬鸭", place: "Nanning", price: "CNY 50-80", note: "Sour-spicy duck with preserved lemon, a Nanning classic. The tartness cuts through the fat, and it only improves on the second day." },
+  { name: "Five-color glutinous rice", chinese: "五色糯米饭", place: "Zhuang festival food", price: "CNY 10-20", note: "Sticky rice dyed black, red, yellow, purple and white with wild plants for the Zhuang Sanyuesan festival. Eaten with salted fish or sugar." },
+  { name: "Paper-wrapped chicken", chinese: "纸包鸡", place: "Wuzhou", price: "CNY 30-60", note: "Chicken wrapped in jade paper and cooked in hot oil or a clay pot, sealing in the juices. A Wuzhou specialty that reads simple and tastes rich." },
+  { name: "Bamboo-tube rice", chinese: "竹筒饭", place: "Longji", price: "CNY 15-25", note: "Sticky rice steamed inside green bamboo over a fire, sold by Yao villagers along the terrace paths. Eat it hot, straight from the tube." },
+  { name: "Huangyao tofu", chinese: "黄姚豆腐", place: "Huangyao", price: "CNY 20-40", note: "Soft, faintly smoky tofu made with the town's spring water. Fried, steamed or in soup, it is Huangyao's edible signature." },
+  { name: "Weizhou seafood", chinese: "涠洲海鲜", place: "Weizhou Island", price: "CNY 50-100", note: "Buy shrimp, clams and grouper at the morning market and pay your guesthouse to cook it. The freshest, cheapest meal in Guangxi." },
+];
+
+const cityFoods = [
+  { city: "Guilin & Yangshuo", items: "Guilin rice noodles, beer fish, stuffed river snails (螺蛳酿), oil tea" },
+  { city: "Liuzhou", items: "Luosifen, snail duck-feet hotpot (螺蛳鸭脚煲)" },
+  { city: "Nanning", items: "Laoyoufen, lemon duck, sour-and-spicy snacks (酸嘢)" },
+  { city: "Beihai & Weizhou", items: "Seafood, shrimp paste (虾酱), sandworm porridge" },
+  { city: "Chongzuo", items: "Vietnamese-style coffee, lemon duck, border-market snacks" },
+  { city: "Longji & Hechi", items: "Bamboo-tube rice, oil tea, Yao corn wine, hemp-oil soup" },
+];
+
+const dietNotes = [
+  { title: "Vegetarian and vegan", body: "Possible but plan ahead. Noodles are the easiest route: Guilin rice noodles can be ordered without meat (素粉), and many dishes are vegetable-based. Carry a note saying 我吃素 (I eat vegetarian) — kitchens outside big cities may not be familiar with veganism." },
+  { title: "Halal", body: "Halal restaurants exist in larger cities, marked with a green 清真 sign. Guilin and Nanning have the most options. In small towns, stick to vegetable and egg dishes and ask about broth." },
+  { title: "Spice level", body: "Guangxi food is sour and savory more than numbingly spicy. Luosifen and laoyoufen carry real heat; ask for 微辣 (mild) or 不辣 (no chili) on your first bowl." },
+  { title: "Allergies and safety", body: "Peanuts, seafood and gluten are common. Peanut oil is the default cooking oil. Tell the kitchen in advance — a printed allergy card helps where English is thin." },
+  { title: "Food safety", body: "Eat at busy stalls where turnover is high, drink bottled or boiled water, and skip raw seafood away from the coast. Street food in Guilin, Liuzhou and Nanning is generally safe when freshly cooked." },
+];
+---
+<section id="food" class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-14">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        The food is worth the trip alone
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Guangxi's noodles run sour, spicy and savory, and luosifen is only the headline. Here is the full menu, city by city.
+      </p>
+    </div>
+
+    <!-- Luosifen deep dive -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-10">
+      <a href="#destinations" class="group relative overflow-hidden rounded-2xl min-h-[400px] lg:col-span-5">
+        <img src="/images/luosifen.webp" alt="A bowl of luosifen snail rice noodles" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-950/95 via-brand-950/40 to-transparent"></div>
+        <div class="relative z-10 p-8 flex flex-col justify-end h-full">
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-300">The one dish</p>
+          <h3 class="text-2xl md:text-3xl font-bold text-white mt-1">Luosifen <span class="text-white/70 text-lg font-medium">螺蛳粉</span></h3>
+          <p class="text-white/80 text-sm mt-3 max-w-sm leading-relaxed">
+            Born in Liuzhou in the 1980s, this snail-broth rice noodle soup with fermented bamboo shoot went from local breakfast to global obsession. The aroma is the point: sour, funky and deeply savory.
+          </p>
+        </div>
+      </a>
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl border border-stone-200 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">What's in it</p>
+          <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+            Rice noodles, a broth simmered from river snails and pork bones, pickled bamboo shoot (the famous smell), fried tofu skin (腐竹), peanuts, black fungus, and a spoon of chili oil. Add a fried egg and extra bamboo shoot.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-stone-200 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">How to eat it</p>
+          <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+            Order 微辣 (mild) for your first bowl, add vinegar to taste, and slurp fast while the noodles are springy. In Liuzhou it is breakfast and late-night food — the busiest stalls at 1 AM are the best.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-stone-200 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Where to get it</p>
+          <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+            Anywhere, but the reference bowl is in Liuzhou. Look for the stall with the longest line rather than any single name. Outside Liuzhou, it is on menus across the region.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl border border-stone-200 p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Take it home</p>
+          <p class="text-sm text-stone-600 mt-2 leading-relaxed">
+            Instant luosifen packs (好欢螺, 螺霸王, 李子柒) are in every supermarket. Boil the noodles, then the broth, then assemble. It is 80% of the real thing and a great souvenir.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ten dishes -->
+    <div class="mb-10">
+      <h3 class="text-xl font-bold text-stone-900 mb-5">Nine more dishes worth planning around</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {dishes.map((dish) => (
+          <div class="bg-white rounded-xl border border-stone-200 p-5">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="font-bold text-stone-900">{dish.name} <span class="text-stone-400 font-medium text-sm">{dish.chinese}</span></h4>
+              <span class="text-xs font-medium text-brand-700 shrink-0">{dish.price}</span>
+            </div>
+            <p class="text-xs text-stone-400 mt-0.5">{dish.place}</p>
+            <p class="text-sm text-stone-600 mt-2 leading-relaxed">{dish.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- City food map -->
+    <details class="bg-white rounded-2xl border border-stone-200 overflow-hidden mb-6 group">
+      <summary class="cursor-pointer flex items-center justify-between px-7 py-5 text-lg font-bold text-stone-900 list-none">
+        What to eat in each city
+        <svg class="w-5 h-5 text-stone-400 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="px-7 pb-7">
+        <div class="overflow-x-auto">
+          <table class="w-full min-w-[560px] text-left text-sm">
+            <thead>
+              <tr class="border-b border-stone-200">
+                <th class="py-3 pr-4 font-semibold text-stone-900">City</th>
+                <th class="py-3 font-semibold text-stone-900">Eat this</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-stone-100">
+              {cityFoods.map((c) => (
+                <tr>
+                  <td class="py-3 pr-4 text-stone-700 font-medium whitespace-nowrap">{c.city}</td>
+                  <td class="py-3 text-stone-600">{c.items}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <!-- Diet notes -->
+    <details class="bg-white rounded-2xl border border-stone-200 overflow-hidden group">
+      <summary class="cursor-pointer flex items-center justify-between px-7 py-5 text-lg font-bold text-stone-900 list-none">
+        Dietary notes: vegetarian, halal, spice and safety
+        <svg class="w-5 h-5 text-stone-400 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="px-7 pb-7 space-y-5">
+        {dietNotes.map((n) => (
+          <div>
+            <p class="font-semibold text-stone-900">{n.title}</p>
+            <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">{n.body}</p>
+          </div>
+        ))}
+      </div>
+    </details>
+  </div>
+</section>

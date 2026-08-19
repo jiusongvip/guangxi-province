@@ -1,0 +1,91 @@
+---
+import { itineraries } from "../data/destinations";
+const budgetHint: Record<number, string> = {
+  3: "CNY 1,700",
+  5: "CNY 2,800",
+  7: "CNY 3,900",
+  10: "CNY 5,500",
+};
+---
+<section id="itineraries" class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        Pick your days, see the route
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Start in Guilin and work south. Choose a length and the route updates.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Trip length">
+      {itineraries.map((it, i) => (
+        <button
+          class={`itinerary-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${i === 0 ? "bg-brand-700 text-white" : "bg-white text-stone-700 border border-stone-200 hover:border-brand-300"}`}
+          data-days={it.days}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {it.days} days
+        </button>
+      ))}
+    </div>
+
+    <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden">
+      {itineraries.map((it, i) => (
+        <div class={`itinerary-panel ${i === 0 ? "" : "hidden"}`} data-panel={it.days} role="tabpanel">
+          <div class="p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-4">
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">{it.days}-day trip</p>
+              <h3 class="text-2xl font-bold text-stone-900 mt-2">{it.title}</h3>
+              <p class="text-stone-400 mt-1">{it.subtitle}</p>
+              <p class="text-sm font-medium text-brand-700 mt-4">{it.route}</p>
+              <p class="text-xs text-stone-400 mt-5">{it.bestFor}</p>
+              <p class="mt-5 inline-flex items-center gap-2 text-sm text-stone-500">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                Roughly {budgetHint[it.days]} mid-range, before the cruise
+              </p>
+            </div>
+            <div class="lg:col-span-8">
+              <ul class="space-y-3">
+                {it.summary.map((s) => (
+                  <li class="flex gap-3 text-stone-700">
+                    <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span class="text-sm md:text-base leading-relaxed">{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var tabs = document.querySelectorAll(".itinerary-tab");
+    var panels = document.querySelectorAll(".itinerary-panel");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        tabs.forEach(function (t) {
+          t.classList.remove("bg-brand-700", "text-white");
+          t.classList.add("bg-white", "text-stone-700", "border", "border-stone-200");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("bg-brand-700", "text-white");
+        tab.classList.remove("bg-white", "text-stone-700", "border", "border-stone-200");
+        tab.setAttribute("aria-selected", "true");
+        var days = tab.getAttribute("data-days");
+        panels.forEach(function (p) {
+          if (p.getAttribute("data-panel") === days) {
+            p.classList.remove("hidden");
+          } else {
+            p.classList.add("hidden");
+          }
+        });
+      });
+    });
+  })();
+</script>

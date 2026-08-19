@@ -1,0 +1,36 @@
+---
+const essentials = [
+  {
+    text: "Visas: China offers visa-free entry to 76 countries and a 240-hour transit visa-free policy for 55 countries, including via Guilin and Nanning. Confirm your nationality before booking.",
+    link: { href: "https://www.nia.gov.cn/", label: "Official visa source (NIA)" },
+  },
+  { text: "Payment: Alipay and WeChat Pay are standard everywhere. Carry some cash for villages in Hechi and Longji, where card readers are rare." },
+  { text: "Language: Guilin, Yangshuo and Beihai have some English. Carry an offline translation app and saved screenshots for Hechi and Bama." },
+  { text: "Connectivity: Download offline maps and translation before you go. Some international apps need a VPN inside China." },
+  { text: "Health: Drink bottled or boiled water and eat at busy stalls. Carry a basic medical kit; rural clinics are limited." },
+];
+---
+<section id="plan" class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+      Before you go: the practicals
+    </h2>
+    <p class="text-stone-500 text-lg mt-4 leading-relaxed">
+      Five things to sort out before you land, so the trip runs itself.
+    </p>
+
+    <div class="mt-10 space-y-4">
+      {essentials.map((e) => (
+        <div class="flex gap-4 p-5 bg-white rounded-xl border border-stone-200">
+          <svg class="w-5 h-5 text-brand-700 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <p class="text-sm md:text-base text-stone-700 leading-relaxed">
+            {e.text}
+            {e.link && (
+              <a href={e.link.href} target="_blank" rel="noopener noreferrer" class="text-brand-700 hover:text-brand-800 underline">{e.link.label}</a>
+            )}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

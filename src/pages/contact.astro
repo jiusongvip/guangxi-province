@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Contact the Guangxi Province Travel Guide Team"
+  description="Send a correction, a tip from your own trip, or a question about Guangxi to the independent Guangxi Province Travel Guide team. We read every message."
+>
+  <Nav solid />
+  <main class="pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-900 pb-1">Contact</h1>
+      <div class="mt-8 text-stone-600 leading-relaxed">
+        <h2 class="text-2xl font-bold text-stone-900 mt-8">Get in touch</h2>
+        <p class="mt-4">
+          Have a correction, a tip from your own Guangxi trip, or a question the guide does not answer? We read every message and reply when we can.
+        </p>
+        <p class="mt-4">
+          Email us at <a href="mailto:hello@guangxi-province.com" class="text-brand-700 hover:text-brand-800 underline">hello@guangxi-province.com</a>.
+        </p>
+        <h2 class="text-2xl font-bold text-stone-900 mt-8">For businesses</h2>
+        <p class="mt-4 text-sm text-stone-400">
+          We do not accept sponsored listings or paid placements. If you are a hotel or tour operator, please note we do not list businesses on request.
+        </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

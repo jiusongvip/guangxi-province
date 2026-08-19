@@ -1,0 +1,84 @@
+---
+const seasons = [
+  {
+    season: "Spring",
+    months: "March to May",
+    temp: "15-28°C",
+    wear: "Light layers, a light rain jacket and an umbrella. Expect 'returning south' humidity (回南天) in March and April, when everything feels damp.",
+    note: "Longji's terraces are flooded and mirror-like from April. Green season, with occasional rain.",
+  },
+  {
+    season: "Summer",
+    months: "June to August",
+    temp: "26-35°C",
+    wear: "Breathable, quick-dry clothes, sunscreen, a hat and rain gear. It is hot and humid, and afternoon downpours are common.",
+    note: "Detian Waterfall runs at full flow. Best time for waterfalls and the coast, worst for exposed karst viewpoints.",
+  },
+  {
+    season: "Autumn",
+    months: "September to November",
+    temp: "18-30°C",
+    wear: "T-shirts for the day, a light jacket for the evening. The most comfortable season by far.",
+    note: "The sweet spot overall. Longji turns gold in September and October. October is peak season — book ahead.",
+  },
+  {
+    season: "Winter",
+    months: "December to February",
+    temp: "8-18°C",
+    wear: "A warm mid-layer, a jacket or light down coat for the north, and a sweater for the coast. Damp cold feels chillier than the number.",
+    note: "Mild by northern standards, but buildings often lack central heating, so pack for indoors too. Good for the coast and cities.",
+  },
+];
+
+const packList = [
+  "Grippy walking shoes: Longji's stairs, Huangyao's cobblestones and karst viewpoints are uneven and slippery when wet.",
+  "A light rain jacket: rain is possible in every season except mid-winter.",
+  "Motion-sickness medicine: the Beihai-Weizhou ferry is rough in wind.",
+  "A reusable bottle and sunscreen: summer heat is strong, and tap water is not for drinking.",
+  "An offline translation app and a printed allergy or dietary card if you have restrictions.",
+  "A universal plug adapter (China uses Type A/C/I sockets) and a power bank for long travel days.",
+];
+---
+<section id="packing" class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        Weather and what to pack
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Guangxi is subtropical: no hard winter, no altitude, but real humidity. Here is what to wear each season and what to throw in the bag.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+      {seasons.map((s) => (
+        <div class="bg-white rounded-2xl border border-stone-200 p-7">
+          <div class="flex items-baseline justify-between gap-3">
+            <h3 class="text-lg font-bold text-stone-900">{s.season}</h3>
+            <span class="text-sm font-medium text-brand-700">{s.temp}</span>
+          </div>
+          <p class="text-xs text-stone-400 mt-0.5">{s.months}</p>
+          <p class="text-sm text-stone-600 mt-3 leading-relaxed"><span class="font-medium text-stone-800">Wear:</span> {s.wear}</p>
+          <p class="text-sm text-stone-500 mt-2 leading-relaxed">{s.note}</p>
+        </div>
+      ))}
+    </div>
+
+    <details class="bg-white rounded-2xl border border-stone-200 overflow-hidden group">
+      <summary class="cursor-pointer flex items-center justify-between px-7 py-5 text-lg font-bold text-stone-900 list-none">
+        The six-item packing list
+        <svg class="w-5 h-5 text-stone-400 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="px-7 pb-7">
+        <ul class="space-y-3">
+          {packList.map((p) => (
+            <li class="flex gap-3 text-sm text-stone-600 leading-relaxed">
+              <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{p}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>

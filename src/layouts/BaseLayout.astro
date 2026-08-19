@@ -1,0 +1,126 @@
+---
+import "../styles/global.css";
+import "@fontsource/outfit/400.css";
+import "@fontsource/outfit/500.css";
+import "@fontsource/outfit/600.css";
+import "@fontsource/outfit/700.css";
+import "@fontsource/outfit/800.css";
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+}
+
+const { title, description, ogImage, ogType = "website", noindex = false } = Astro.props;
+
+const siteName = "Guangxi Province";
+const fullTitle = title.includes("Guangxi") ? title : `${title} | ${siteName}`;
+const canonicalURL =
+  Astro.url.pathname === "/"
+    ? new URL("/", Astro.site).href.replace(/\/$/, "")
+    : new URL(Astro.url.pathname, Astro.site).href;
+const robotsContent = noindex ? "noindex, follow" : "index, follow";
+
+const defaultOgImage = new URL("/images/og-guangxi.webp", Astro.site).href;
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : defaultOgImage;
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Guangxi Province Travel Guide",
+  url: "https://www.guangxi-province.com",
+  description:
+    "Independent travel guide to Guangxi Province, China. Discover Li River karst, Beihai beaches, Detian Waterfall, Longji rice terraces, luosifen food and Zhuang culture.",
+  logo: "https://www.guangxi-province.com/favicon.svg",
+  foundingDate: "2026",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robotsContent} />
+    {!noindex && <link rel="canonical" href={canonicalURL} />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {!noindex && <link rel="alternate" hreflang="en" href={canonicalURL} />}
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={siteName} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+    <div id="reading-progress" style="position:fixed;top:0;left:0;height:3px;background:#0f766e;z-index:9999;width:0%;transition:width 0.1s linear;"></div>
+    <button id="back-to-top" style="position:fixed;bottom:24px;right:24px;width:48px;height:48px;border-radius:50%;background:white;border:1px solid #e7e5e4;box-shadow:0 4px 16px rgba(0,0,0,0.08);cursor:pointer;z-index:9998;display:none;align-items:center;justify-content:center;transition:all 0.3s ease;" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </body>
+</html>
+
+<script is:inline>
+  (function () {
+    var bar = document.getElementById("reading-progress");
+    var btn = document.getElementById("back-to-top");
+    var onScroll = function () {
+      var h = document.documentElement;
+      var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+      if (bar) bar.style.width = Math.min(pct, 100) + "%";
+      if (btn) btn.style.display = window.scrollY > 600 ? "flex" : "none";
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    var observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) entry.target.classList.add("reveal-in");
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".reveal").forEach(function (el) { observer.observe(el); });
+
+    document.querySelectorAll(".faq-item button").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var parent = btn.parentElement;
+        if (parent) parent.classList.toggle("open");
+      });
+    });
+
+    var nav = document.getElementById("main-nav");
+    if (nav) {
+      var onNavScroll = function () { nav.classList.toggle("nav-solid", window.scrollY > 60); };
+      onNavScroll();
+      window.addEventListener("scroll", onNavScroll, { passive: true });
+    }
+
+    var menuBtn = document.getElementById("mobile-menu-btn");
+    var mobileMenu = document.getElementById("mobile-menu");
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener("click", function () { mobileMenu.classList.toggle("hidden"); });
+      mobileMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () { mobileMenu.classList.add("hidden"); });
+      });
+    }
+  })();
+</script>

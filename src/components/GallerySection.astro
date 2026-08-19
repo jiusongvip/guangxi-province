@@ -1,0 +1,35 @@
+---
+const photos = [
+  { src: "/images/guilin.webp", alt: "Karst peaks rising from the Li River near Guilin", caption: "Guilin karst" },
+  { src: "/images/yangshuo.webp", alt: "Bamboo raft on the Yulong River, Yangshuo", caption: "Yangshuo" },
+  { src: "/images/longji.webp", alt: "Flooded rice terraces at Longji", caption: "Longji terraces" },
+  { src: "/images/beihai-weizhou.webp", alt: "Coastline of Beihai and Weizhou Island", caption: "Beihai coast" },
+  { src: "/images/detian-waterfall.webp", alt: "Detian Waterfall on the Vietnam border", caption: "Detian Waterfall" },
+  { src: "/images/liuzhou.webp", alt: "Liujiang riverfront in Liuzhou", caption: "Liuzhou" },
+  { src: "/images/huangyao.webp", alt: "Stone lanes of Huangyao Ancient Town", caption: "Huangyao" },
+  { src: "/images/bama.webp", alt: "Sinkhole lakes and karst near Bama, Hechi", caption: "Hechi sinkholes" },
+];
+---
+<section id="gallery" class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        Guangxi in eight frames
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Coast, karst, terraces and sinkholes, the four landscapes that make this province feel like several trips in one.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {photos.map((p) => (
+        <figure class="group relative overflow-hidden rounded-xl aspect-[4/5]">
+          <img src={p.src} alt={p.alt} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
+          <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-950/90 to-transparent px-4 pt-10 pb-3 text-white text-xs font-medium">
+            {p.caption}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

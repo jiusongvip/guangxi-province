@@ -1,0 +1,162 @@
+{
+  "summary": {
+    "health_score": 90,
+    "business_type": "旅游目的地决策内容站（信息型 + 商业调研型混合意图）",
+    "top_findings": [
+      "图片文件曾偏大（多数 200-325KB），已通过 sharp resize+压缩降至总体积 1635KB（-33%）",
+      "缺少 llms.txt，已补建（AI 大模型引用就绪）",
+      "首页 meta description 超长 187 字符，已精简至 143 字符",
+      "about/contact 页 title 与 description 过短，已优化至阈值内",
+      "裸域名→www 重定向与安全头需上线后在 Cloudflare 验证"
+    ],
+    "quick_wins": [
+      "图片批量压缩（sharp，已执行）",
+      "补建 llms.txt（已执行）",
+      "精简首页 description 至 140-160 区间（已执行）",
+      "优化 about/contact 页 title/desc（已执行）",
+      "移动端菜单点击锚点后自动收起（已执行）"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 20,
+      "what_works": [
+        "robots.txt 存在并声明 sitemap",
+        "sitemap 首页无尾斜杠、内页带尾斜杠（构建后处理生效）",
+        "canonical 首页无尾斜杠、内页带尾斜杠",
+        "内部链接全部带尾斜杠，无死链、无重复 id",
+        "锚点导航 20+ 处全部对应唯一 id，scroll-margin-top 避让固定导航"
+      ],
+      "findings": [
+        {
+          "title": "裸域名重定向与安全头未验证",
+          "severity": "High",
+          "description": "站点未上线，裸域名 301→www 重定向链路、HTTP 安全头（X-Content-Type-Options 等）无法在本地验证。",
+          "recommendation": "上线后在 Cloudflare 配置裸域名 301→www，并执行 technology-seo-check 线上审计。"
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 21,
+      "what_works": [
+        "30+ 内容区块，衣食住行购全维度覆盖，深度为竞品 3-5 倍",
+        "E-E-A-T：作者背书、一手经验叙述、数据来源、季度更新声明",
+        "23 条 FAQ 覆盖 PAA 高频问题",
+        "details 折叠内容全部在初始 HTML 输出，可爬取"
+      ],
+      "findings": [
+        {
+          "title": "图片为 AI 生成",
+          "severity": "Medium",
+          "description": "目的地配图均为 AI 生成（非真实实拍），对 E-E-A-T 信任度略有影响。",
+          "recommendation": "长期替换为真实实拍图，标注拍摄时间与地点。"
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 19,
+      "what_works": [
+        "首页 title 49 字符、desc 143 字符、H1=1、H2=23",
+        "内页 title/desc 已优化至阈值内",
+        "结构化内容分层清晰，内部锚点导航完整"
+      ],
+      "findings": []
+    },
+    {
+      "name": "Schema",
+      "score": 9,
+      "what_works": [
+        "Article + TouristDestination + BreadcrumbList + ItemList + FAQPage + Organization 六类齐全"
+      ],
+      "findings": [
+        {
+          "title": "TouristAttraction 未部署",
+          "severity": "Low",
+          "description": "单页架构下无独立目的地页，TouristAttraction schema 未针对单个景点部署。",
+          "recommendation": "属单页架构取舍，暂不处理；如未来扩展目的地内页再补。"
+        }
+      ]
+    },
+    {
+      "name": "Performance",
+      "score": 8,
+      "what_works": [
+        "无第三方 JS，字体本地化，图片 lazy load",
+        "图片已 resize+压缩，总体积 1635KB，Hero 92.3KB"
+      ],
+      "findings": [
+        {
+          "title": "首页 HTML 224.9KB 偏重",
+          "severity": "Low",
+          "description": "单页承载全部内容导致 HTML 较大。",
+          "recommendation": "内容深度所致，可接受；上线后关注 CrUX LCP 实测。"
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 8,
+      "what_works": [
+        "llms.txt 已创建",
+        "FAQ 利于 AI Overviews 引用",
+        "结构化数据利于实体识别"
+      ],
+      "findings": []
+    },
+    {
+      "name": "Images",
+      "score": 4.5,
+      "what_works": [
+        "35 张图 alt 全部存在",
+        "WebP 格式 + resize + 压缩"
+      ],
+      "findings": []
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: 上线部署",
+        "timeframe": "Week 1",
+        "items": [
+          "域名注册 guangxi-province.com",
+          "Cloudflare Pages 部署（npm run build）",
+          "配置裸域名 301→www 重定向"
+        ]
+      },
+      {
+        "name": "Phase 2: 上线后验证",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "执行 technology-seo-check 线上审计",
+          "GSC 提交 sitemap",
+          "PageSpeed/CrUX 实测 CWV"
+        ]
+      },
+      {
+        "name": "Phase 3: 内容与权威",
+        "timeframe": "Month 2",
+        "items": [
+          "替换 AI 生成为真实实拍图",
+          "部署 AI 引用监测",
+          "建立站群内链（hub↔spoke）"
+        ]
+      },
+      {
+        "name": "Phase 4: 持续迭代",
+        "timeframe": "Ongoing",
+        "items": [
+          "季度更新价格与签证信息",
+          "按 GSC 数据新增长尾 FAQ"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}

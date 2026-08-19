@@ -1,0 +1,56 @@
+---
+const groups = [
+  {
+    title: "Before you book",
+    items: [
+      "Confirm your visa: China currently offers visa-free entry to 76 countries and a 240-hour transit visa-free policy for 55 countries, including via Guilin and Nanning. Check your nationality first.",
+      "Book the Li River cruise (4-star CNY 350-500) a day ahead in peak season, ideally through your guesthouse.",
+      "Reserve a night on Longji's terraces if you want the sunrise; same-day day-trips miss it.",
+    ],
+  },
+  {
+    title: "Before you fly",
+    items: [
+      "Set up Alipay or WeChat Pay and link a card. Mobile payment is standard everywhere.",
+      "Download an offline translation app (Google Translate offline or Pleco) and save screenshots of addresses and dish names.",
+      "Carry some cash for villages in Hechi and Longji, where ATMs are scarce.",
+    ],
+  },
+  {
+    title: "On the road",
+    items: [
+      "Pack grippy shoes for Longji's stairs and Huangyao's cobblestones, plus rain gear for the May-to-August wet season.",
+      "Bring motion-sickness medicine for the Beihai-Weizhou ferry, which is rough in wind.",
+      "Keep your passport handy in border areas, and stay within marked tourist zones.",
+    ],
+  },
+];
+---
+<section id="checklist" class="py-20 md:py-28 bg-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        The pre-trip checklist
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Nine things that prevent most first-trip hiccups. Tick them off and the rest is scenery.
+      </p>
+    </div>
+
+    <div class="space-y-8">
+      {groups.map((g) => (
+        <div>
+          <h3 class="text-sm font-semibold uppercase tracking-wider text-brand-700 mb-4">{g.title}</h3>
+          <ul class="space-y-3">
+            {g.items.map((it) => (
+              <li class="flex gap-3 items-start">
+                <input type="checkbox" class="mt-1 w-4 h-4 accent-brand-700 shrink-0" />
+                <span class="text-stone-700 text-sm md:text-base leading-relaxed">{it}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

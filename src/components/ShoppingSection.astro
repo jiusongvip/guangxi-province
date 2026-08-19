@@ -1,0 +1,59 @@
+---
+const souvenirs = [
+  { name: "Instant luosifen", chinese: "螺蛳粉速食包", price: "CNY 10-20/pack", note: "The easiest souvenir to love. Buy a few brands (好欢螺, 螺霸王, 李子柒) at any supermarket and compare at home." },
+  { name: "Liubao tea", chinese: "六堡茶", price: "CNY 50-300", note: "A fermented dark tea from Wuzhou, aged like pu-erh. Buy from a tea shop that lets you taste first." },
+  { name: "Monk fruit", chinese: "罗汉果", price: "CNY 5-15 each", note: "Dried fruit from Guilin's Yongfu county, used to sweeten tea. A natural, calorie-free sweetener." },
+  { name: "Zhuang brocade", chinese: "壮锦", price: "CNY 80-500", note: "Handwoven Zhuang textiles in bold geometric patterns. Scarves and bags travel well; wall hangings are the real thing." },
+  { name: "Embroidered balls", chinese: "绣球", price: "CNY 20-100", note: "Zhuang love tokens from Jingxi, made of silk and ribbon. A lightweight, colorful gift." },
+  { name: "South pearls", chinese: "合浦珍珠", price: "CNY 100+", note: "Hepu, near Beihai, is one of China's historic pearl beds. Buy from a reputable shop and ask for a certificate." },
+];
+
+const tips = [
+  "Supermarkets (Vanguard, RT-Mart) are the best place for luosifen packs and monk fruit at local prices.",
+  "For brocade, balls and tea, go to a specialist shop in Guilin or Nanning, not the tourist stalls at scenic spots.",
+  "Bargain politely at markets, but expect fixed prices in shops. Start around 70% of the asking price in tourist areas.",
+  "Check airline rules before buying liquids (rice wine, chili sauce) or large tea bricks.",
+  "Pearls and antiques need certification for export; stick to new, certified items.",
+];
+---
+<section id="shopping" class="py-20 md:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        What to bring home
+      </h2>
+      <p class="text-stone-500 text-lg mt-4 leading-relaxed max-w-2xl">
+        Luosifen packs, dark tea, brocade and south-sea pearls — Guangxi's souvenirs are better than fridge magnets. Here is what to buy and where.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+      {souvenirs.map((s) => (
+        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-6">
+          <div class="flex items-baseline justify-between gap-2">
+            <h3 class="font-bold text-stone-900">{s.name} <span class="text-stone-400 font-medium text-sm">{s.chinese}</span></h3>
+            <span class="text-xs font-medium text-brand-700 shrink-0">{s.price}</span>
+          </div>
+          <p class="text-sm text-stone-600 mt-2 leading-relaxed">{s.note}</p>
+        </div>
+      ))}
+    </div>
+
+    <details class="bg-white rounded-2xl border border-stone-200 overflow-hidden group">
+      <summary class="cursor-pointer flex items-center justify-between px-7 py-5 text-lg font-bold text-stone-900 list-none">
+        Shopping tips
+        <svg class="w-5 h-5 text-stone-400 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </summary>
+      <div class="px-7 pb-7">
+        <ul class="space-y-3">
+          {tips.map((t) => (
+            <li class="flex gap-3 text-sm text-stone-600 leading-relaxed">
+              <svg class="w-5 h-5 text-brand-600 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>{t}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </details>
+  </div>
+</section>

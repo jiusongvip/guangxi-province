@@ -1,0 +1,168 @@
+---
+import { destinations } from "../data/destinations";
+
+type Matcher = {
+  id: string;
+  label: string;
+  tagline: string;
+  route: string;
+  days: string;
+  reason: string;
+  slugs: string[];
+};
+
+const matchers: Matcher[] = [
+  {
+    id: "classic",
+    label: "First-timer",
+    tagline: "The postcard route, logistics included",
+    route: "Guilin → Li River → Yangshuo → Longji",
+    days: "5 days",
+    reason:
+      "The safest first Guangxi trip: world-class karst, one easy rail spine and the most English spoken anywhere in the region. If you have never been to China, start here.",
+    slugs: ["guilin", "yangshuo", "longji-rice-terraces"],
+  },
+  {
+    id: "food",
+    label: "Food obsessive",
+    tagline: "Chase luosifen to its source",
+    route: "Liuzhou → Guilin → Yangshuo",
+    days: "4-6 days",
+    reason:
+      "Eat luosifen at its source in Liuzhou, then chase Guilin rice noodles and beer fish down the rail line. Guangxi's food runs sour, spicy and savory, and noodles are the thread.",
+    slugs: ["liuzhou", "guilin", "yangshuo"],
+  },
+  {
+    id: "beach",
+    label: "Beach escape",
+    tagline: "Volcanic island, no karst required",
+    route: "Beihai → Weizhou Island",
+    days: "2-3 days",
+    reason:
+      "Silver Beach and a young volcanic island with coral reefs and banana groves. No karst, no stairs, just coastline, a scooter loop and fresh seafood cooked by your guesthouse.",
+    slugs: ["beihai-weizhou-island"],
+  },
+  {
+    id: "photo",
+    label: "Photographer",
+    tagline: "Sunrise terraces and the 20 RMB bend",
+    route: "Longji → Guilin → Yangshuo",
+    days: "5-7 days",
+    reason:
+      "Flooded terraces that mirror the sky at sunrise, plus the Li River bend from the 20 RMB note. Spring reflections and autumn gold are the two peak windows.",
+    slugs: ["longji-rice-terraces", "guilin", "yangshuo"],
+  },
+  {
+    id: "border",
+    label: "Border adventurer",
+    tagline: "A transnational waterfall on the frontier",
+    route: "Nanning → Chongzuo → Detian",
+    days: "6-8 days",
+    reason:
+      "Asia's largest transnational waterfall on the Vietnam border, far from the northern crowds, plus raw frontier karst and the Mingshi valley most travelers never reach.",
+    slugs: ["chongzuo-detian-waterfall"],
+  },
+  {
+    id: "slow",
+    label: "Off the beaten path",
+    tagline: "Stone towns and sinkhole country",
+    route: "Huangyao → Hechi → Bama",
+    days: "8-10 days",
+    reason:
+      "A lived-in 1,000-year-old stone town and raw karst sinkhole country where the tour buses do not reach. Rural, unvarnished and all the better for it.",
+    slugs: ["huangyao-ancient-town", "bama-hechi"],
+  },
+];
+
+const bySlug = Object.fromEntries(destinations.map((d) => [d.slug, d]));
+---
+<section id="matcher" class="py-20 md:py-28 bg-brand-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white pb-1">
+        Which Guangxi is yours?
+      </h2>
+      <p class="text-brand-100/80 text-lg mt-4 leading-relaxed max-w-2xl">
+        Pick the traveler you are and the route mostly writes itself. No ten tabs, no decision fatigue.
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-8" role="tablist" aria-label="Traveler type">
+      {matchers.map((m, i) => (
+        <button
+          class={`matcher-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-colors ${i === 0 ? "bg-white text-brand-900" : "bg-white/10 text-white border border-white/20 hover:bg-white/20"}`}
+          data-matcher={m.id}
+          role="tab"
+          aria-selected={i === 0 ? "true" : "false"}
+        >
+          {m.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="bg-white rounded-2xl overflow-hidden">
+      {matchers.map((m, i) => (
+        <div class={`matcher-panel ${i === 0 ? "" : "hidden"}`} data-panel={m.id} role="tabpanel">
+          <div class="p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div class="lg:col-span-4">
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">{m.tagline}</p>
+              <h3 class="text-2xl font-bold text-stone-900 mt-2">{m.label}</h3>
+              <p class="text-sm font-medium text-brand-700 mt-4">{m.route}</p>
+              <p class="inline-flex items-center gap-2 text-sm text-stone-500 mt-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {m.days}
+              </p>
+              <p class="text-sm text-stone-600 mt-5 leading-relaxed">{m.reason}</p>
+            </div>
+            <div class="lg:col-span-8">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {m.slugs.map((slug) => {
+                  const d = bySlug[slug];
+                  return (
+                    <div class="rounded-xl border border-stone-200 overflow-hidden flex flex-col">
+                      <div class="relative aspect-[16/9] overflow-hidden">
+                        <img src={d.image} alt={`${d.name} ${d.chinese}, Guangxi`} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                        <div class="absolute top-3 left-3 px-2.5 py-1 bg-brand-700/90 text-white text-xs font-semibold rounded-full">{d.minDays}</div>
+                      </div>
+                      <div class="p-4 flex flex-col flex-1">
+                        <h4 class="font-bold text-stone-900">{d.name} <span class="text-stone-400 font-medium text-sm">{d.chinese}</span></h4>
+                        <p class="text-brand-700 text-xs font-medium mt-1">{d.tagline}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var tabs = document.querySelectorAll(".matcher-tab");
+    var panels = document.querySelectorAll(".matcher-panel");
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        tabs.forEach(function (t) {
+          t.classList.remove("bg-white", "text-brand-900");
+          t.classList.add("bg-white/10", "text-white", "border", "border-white/20");
+          t.setAttribute("aria-selected", "false");
+        });
+        tab.classList.add("bg-white", "text-brand-900");
+        tab.classList.remove("bg-white/10", "text-white", "border", "border-white/20");
+        tab.setAttribute("aria-selected", "true");
+        var id = tab.getAttribute("data-matcher");
+        panels.forEach(function (p) {
+          if (p.getAttribute("data-panel") === id) {
+            p.classList.remove("hidden");
+          } else {
+            p.classList.add("hidden");
+          }
+        });
+      });
+    });
+  })();
+</script>

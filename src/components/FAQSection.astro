@@ -1,0 +1,23 @@
+---
+import { faqs } from "../data/faq";
+---
+<section id="faq" class="py-20 md:py-28 bg-stone-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-14">
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-stone-900 pb-1">
+        Questions travelers ask before going
+      </h2>
+    </div>
+    <div class="max-w-3xl divide-y divide-stone-200">
+      {faqs.map((item) => (
+        <div class="faq-item">
+          <button class="py-5 flex items-center justify-between w-full text-left" aria-expanded="false">
+            <span class="text-base font-medium text-stone-900 pr-8">{item.q}</span>
+            <svg class="w-5 h-5 text-stone-400 flex-shrink-0 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><p class="pb-5 text-stone-500 leading-relaxed">{item.a}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

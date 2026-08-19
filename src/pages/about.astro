@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../data/config";
+---
+
+<BaseLayout
+  title="About Our Independent Guangxi Travel Guide"
+  description="Who we are and how we write the Guangxi Province Travel Guide: an independent, reader-first guide built on firsthand travel and honest advice."
+>
+  <Nav solid />
+  <main class="pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-900 pb-1">About this guide</h1>
+      <div class="mt-8 text-stone-600 leading-relaxed">
+        <h2 class="text-2xl font-bold text-stone-900 mt-8">Why this guide exists</h2>
+        <p class="mt-4">
+          Guangxi Province Travel Guide is an independent, reader-first travel guide. We are not a booking platform, a tour operator or a tourism board. We earn no commission on anything you book, and we do not accept payment for listings.
+        </p>
+        <p class="mt-4">
+          {SITE.author.bio}
+        </p>
+        <h2 class="text-2xl font-bold text-stone-900 mt-8">How we write</h2>
+        <p class="mt-4">
+          Our method is simple: we visit, we eat, we get lost, and we write down what actually happened, including the parts guidebooks usually leave out. Every restaurant, price and warning on this site comes from firsthand travel, cross-checked against current listings in 2026.
+        </p>
+        <p class="mt-4">
+          Questions, corrections or a tip from your own trip? Write to us through the <a href="/contact/" class="text-brand-700 hover:text-brand-800 underline">contact page</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
