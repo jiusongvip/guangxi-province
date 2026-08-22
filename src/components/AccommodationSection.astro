@@ -1,9 +1,9 @@
 ---
 const stayTypes = [
-  { type: "International hotels", price: "CNY 400-900", note: "Familiar brands in Guilin, Nanning and Beihai city centers. Reliable, English-speaking front desks and easy taxis." },
-  { type: "Boutique & courtyard stays", price: "CNY 300-700", note: "Converted riverside houses in Guilin and Yangshuo, and stone courtyard inns inside Huangyao. The character option." },
-  { type: "Countryside guesthouses", price: "CNY 150-400", note: "Family-run inns in Yangshuo's villages, Longji's terrace villages and the Mingshi valley. Basic English, huge views." },
-  { type: "Special stays", price: "CNY 200-600", note: "Wooden Yao guesthouses above the Longji terraces, and Weizhou Island homestays that will cook your market seafood." },
+  { type: "International hotels", price: "CNY 400-900", img: "/images/stay/stay-hotel.webp", alt: "A hotel in Guilin", note: "Familiar brands in Guilin, Nanning and Beihai city centers. Reliable, English-speaking front desks and easy taxis." },
+  { type: "Boutique & courtyard stays", price: "CNY 300-700", img: "/images/stay/stay-boutique.webp", alt: "Stone lanes and courtyard inns inside Huangyao", note: "Converted riverside houses in Guilin and Yangshuo, and stone courtyard inns inside Huangyao. The character option." },
+  { type: "Countryside guesthouses", price: "CNY 150-400", img: "/images/stay/stay-guesthouse.webp", alt: "Yangshuo villages and fields between the karst peaks", note: "Family-run inns in Yangshuo's villages, Longji's terrace villages and the Mingshi valley. Basic English, huge views." },
+  { type: "Special stays", price: "CNY 200-600", img: "/images/stay/stay-special.webp", alt: "Wooden stilt guesthouses above the Longsheng rice terraces", note: "Wooden Yao guesthouses above the Longji terraces, and Weizhou Island homestays that will cook your market seafood." },
 ];
 
 const areaAdvice = [
@@ -36,10 +36,15 @@ const bookingTips = [
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
       {stayTypes.map((s) => (
-        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-6">
-          <p class="font-semibold text-stone-900">{s.type}</p>
-          <p class="text-xs font-medium text-brand-700 mt-1">{s.price}</p>
-          <p class="text-sm text-stone-600 mt-3 leading-relaxed">{s.note}</p>
+        <div class="card rounded-2xl overflow-hidden flex flex-col">
+          <div class="card-img relative aspect-[4/3] overflow-hidden">
+            <img src={s.img} alt={s.alt} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <p class="font-semibold text-stone-900">{s.type}</p>
+            <p class="text-xs font-medium text-brand-700 mt-1">{s.price}</p>
+            <p class="text-sm text-stone-600 mt-3 leading-relaxed">{s.note}</p>
+          </div>
         </div>
       ))}
     </div>

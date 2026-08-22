@@ -1,42 +1,128 @@
 ---
 ---
-<section class="relative min-h-[100dvh] flex items-end">
-  <div class="absolute inset-0 z-0 overflow-hidden">
+<section class="hero-stage">
+  <div class="hero-bg">
     <img
       src="/images/guangxi-hero.webp"
       alt="Li River karst peaks rising from the water near Guilin, Guangxi"
       width="1672"
       height="941"
-      class="hero-zoom w-full h-full object-cover"
       loading="eager"
       decoding="async"
       fetchpriority="high"
     />
-    <div class="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-950/40 to-brand-950/10"></div>
   </div>
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-16 md:pb-24 pt-24">
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-white max-w-3xl pb-1">
-      Guangxi Province Travel Guide: Beyond Guilin
+  <canvas class="hero-particles" id="hero-particles" aria-hidden="true"></canvas>
+
+  <div class="hero-content">
+    <p class="overline">Guangxi · Southwest China · 2026</p>
+    <h1 id="hero-title" class="hero-title text-5xl md:text-7xl lg:text-8xl">
+      Guangxi Province, Beyond Guilin
     </h1>
-    <p class="text-lg md:text-xl text-white/85 max-w-2xl mt-5 leading-relaxed">
+    <p class="hero-sub text-base md:text-lg leading-relaxed">
       Karst peaks, a volcanic island, a Vietnam-border waterfall and the world's favorite noodle soup.
-      <span class="text-white font-semibold">One page. No ten tabs. Read it and book.</span>
+      <span class="font-semibold text-white">One page. No ten tabs. Read it and book.</span>
     </p>
-    <div class="flex flex-wrap gap-3 mt-8">
-      <a href="#matcher" class="px-6 py-3 bg-white text-brand-900 rounded-full font-semibold text-sm hover:bg-brand-50 transition-colors inline-flex items-center gap-2">
-        Find your match
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-      </a>
-      <a href="#itineraries" class="px-6 py-3 bg-brand-700/80 text-white rounded-full font-semibold text-sm hover:bg-brand-700 transition-colors inline-flex items-center gap-2">
-        See the 7-day route
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg>
-      </a>
+
+    <div class="mt-9 flex flex-wrap justify-center gap-3">
+      <a href="#matcher" class="btn-outline btn-outline-dark">Find your match</a>
+      <a href="#itineraries" class="btn-outline btn-outline-dark">See the 7-day route</a>
     </div>
-    <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mt-8 text-xs text-white/70">
-      <span class="inline-flex items-center gap-1.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Independent guide</span>
-      <span class="inline-flex items-center gap-1.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>No sponsorship</span>
-      <span class="inline-flex items-center gap-1.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Prices checked quarterly</span>
-      <span class="inline-flex items-center gap-1.5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Firsthand travel</span>
-    </div>
+
+    <p class="hero-meta">
+      <span>By the Guangxi Guide Team</span>
+      <span aria-hidden="true">·</span>
+      <span>Updated August 2026</span>
+      <span aria-hidden="true">·</span>
+      <span>Firsthand trips across all 14 prefectures</span>
+    </p>
   </div>
+
+  <div class="hero-scroll" aria-hidden="true"></div>
 </section>
+
+<script is:inline>
+  (function () {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Split-letter reveal on the hero title
+    var title = document.getElementById("hero-title");
+    if (title && !reduce) {
+      var text = title.textContent || "";
+      title.textContent = "";
+      var chars = text.split("");
+      var frag = document.createDocumentFragment();
+      chars.forEach(function (ch) {
+        var s = document.createElement("span");
+        s.className = "split-char";
+        s.textContent = ch === " " ? "\u00a0" : ch;
+        frag.appendChild(s);
+      });
+      title.appendChild(frag);
+      var spans = title.querySelectorAll(".split-char");
+      spans.forEach(function (s, i) {
+        s.style.transitionDelay = (0.35 + i * 0.025).toFixed(3) + "s";
+      });
+      requestAnimationFrame(function () {
+        setTimeout(function () {
+          spans.forEach(function (s) { s.classList.add("in"); });
+        }, 60);
+      });
+    }
+
+    // Particle stage — floating leaf-green embers over the hero
+    var canvas = document.getElementById("hero-particles");
+    if (canvas && !reduce) {
+      var ctx = canvas.getContext("2d");
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w, h, particles = [];
+
+      var colors = ["rgba(99,175,140,", "rgba(193,203,129,", "rgba(255,253,243,"];
+
+      function resize() {
+        var rect = canvas.parentElement.getBoundingClientRect();
+        w = rect.width; h = rect.height;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        canvas.style.width = w + "px"; canvas.style.height = h + "px";
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      function spawn(p) {
+        p.x = Math.random() * w;
+        p.y = Math.random() * h;
+        p.r = 0.6 + Math.random() * 1.8;
+        p.vy = -(0.08 + Math.random() * 0.28);
+        p.vx = (Math.random() - 0.5) * 0.12;
+        p.a = 0.12 + Math.random() * 0.4;
+        p.c = colors[Math.floor(Math.random() * colors.length)];
+        p.tw = Math.random() * Math.PI * 2;
+      }
+      function init() {
+        resize();
+        var count = Math.min(50, Math.floor(w / 26));
+        particles = [];
+        for (var i = 0; i < count; i++) {
+          var p = {}; spawn(p); particles.push(p);
+        }
+      }
+      function frame() {
+        ctx.clearRect(0, 0, w, h);
+        for (var i = 0; i < particles.length; i++) {
+          var p = particles[i];
+          p.x += p.vx; p.y += p.vy; p.tw += 0.008;
+          p.a = 0.12 + Math.random() * 0.3;
+          if (p.y < -10) spawn(p);
+          if (p.x < -10) p.x = w + 10; if (p.x > w + 10) p.x = -10;
+          ctx.beginPath();
+          ctx.fillStyle = p.c + (p.a * (0.5 + 0.5 * Math.sin(p.tw))).toFixed(3) + ")";
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(frame);
+      }
+      init();
+      requestAnimationFrame(frame);
+      var onResize;
+      window.addEventListener("resize", function () { clearTimeout(onResize); onResize = setTimeout(init, 200); }, { passive: true });
+    }
+  })();
+</script>

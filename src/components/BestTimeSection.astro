@@ -1,4 +1,8 @@
 ---
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const highs = [11, 13, 17, 23, 27, 30, 33, 33, 30, 25, 19, 14];
+const lows = [5, 7, 11, 16, 21, 24, 26, 25, 22, 17, 12, 8];
+
 const seasons = [
   {
     when: "Oct to April",
@@ -49,6 +53,33 @@ const seasons = [
             </div>
           </div>
         ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h3 class="text-lg font-bold text-stone-900">Guilin monthly climate</h3>
+      <p class="text-sm text-stone-500 mt-1 mb-5 max-w-2xl leading-relaxed">
+        Approximate monthly averages for Guilin, from public long-term weather records. The coast (Beihai) runs a few degrees warmer in winter; the borderland (Chongzuo) stays warmer year-round.
+      </p>
+      <div class="overflow-x-auto rounded-xl border border-stone-200 bg-white">
+        <table class="w-full min-w-[640px] text-left text-sm">
+          <thead>
+            <tr class="border-b border-stone-200 bg-stone-50">
+              <th class="py-3 px-4 font-semibold text-stone-900">Month</th>
+              {months.map((m) => <th class="py-3 px-2 font-semibold text-stone-700">{m}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-stone-100">
+              <td class="py-3 px-4 font-medium text-stone-700">Avg high (°C)</td>
+              {highs.map((h) => <td class="py-3 px-2 text-stone-600">{h}</td>)}
+            </tr>
+            <tr>
+              <td class="py-3 px-4 font-medium text-stone-700">Avg low (°C)</td>
+              {lows.map((l) => <td class="py-3 px-2 text-stone-600">{l}</td>)}
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-# build output
+﻿# build output
 dist/
 # generated types
 .astro/
@@ -16,3 +16,9 @@ pnpm-debug.log*
 .images-orig/
 # macOS-specific files
 .DS_Store
+
+# dev server logs
+dev-server*.log
+# ai image backup (not for commit)
+.images-ai-backup/
+

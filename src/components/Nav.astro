@@ -15,19 +15,19 @@ const links = [
 <nav id="main-nav" class={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solid ? "nav-solid" : "bg-transparent"}`}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16 lg:h-[72px]">
-      <a href="/" class="nav-logo text-lg font-bold tracking-tight text-white drop-shadow-sm">
+      <a href="/" class="nav-logo font-display text-xl font-bold tracking-[0.08em] text-stone-50 drop-shadow-sm">
         Guangxi Guide
       </a>
-      <div class="hidden lg:flex items-center gap-1">
+      <div class="hidden lg:flex items-center gap-7">
         {links.map((l) => (
-          <a href={l.href} class="nav-link px-3 py-2 text-sm font-medium text-white/90 hover:text-white rounded-lg transition-colors">{l.label}</a>
+          <a href={l.href} class="nav-link text-[0.72rem] font-medium tracking-[0.14em] uppercase transition-colors">{l.label}</a>
         ))}
-        <a href="#plan" class="nav-cta ml-3 px-4 py-2 text-sm font-semibold text-brand-900 bg-white rounded-full hover:bg-brand-50 transition-colors">
+        <a href="#plan" class="nav-cta px-5 py-2.5 text-[0.72rem] font-semibold tracking-[0.14em] uppercase rounded-full transition-colors">
           Plan Your Trip
         </a>
       </div>
-      <button id="mobile-menu-btn" class="nav-mobile-btn lg:hidden text-white p-2" aria-label="Open menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <button id="mobile-menu-btn" class="nav-mobile-btn lg:hidden text-stone-50 p-2" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
           <line x1="4" y1="6" x2="20" y2="6"/>
           <line x1="4" y1="12" x2="20" y2="12"/>
           <line x1="4" y1="18" x2="20" y2="18"/>
@@ -35,14 +35,14 @@ const links = [
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-stone-100 shadow-lg">
+  <div id="mobile-menu" class="lg:hidden hidden bg-stone-50 border-t border-stone-200">
     <div class="px-4 py-3 space-y-1">
       {links.map((l) => (
-        <a href={l.href} class="block px-3 py-2 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">{l.label}</a>
+        <a href={l.href} class="block px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">{l.label}</a>
       ))}
-      <div class="border-t border-stone-100 my-2"></div>
-      <a href="/about/" class="block px-3 py-2 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">About</a>
-      <a href="/contact/" class="block px-3 py-2 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">Contact</a>
+      <div class="border-t border-stone-200 my-2"></div>
+      <a href="/about/" class="block px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">About</a>
+      <a href="/contact/" class="block px-3 py-2.5 text-sm font-medium text-stone-700 hover:bg-brand-50 rounded-lg">Contact</a>
     </div>
   </div>
 </nav>

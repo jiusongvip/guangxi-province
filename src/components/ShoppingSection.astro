@@ -1,11 +1,11 @@
 ---
 const souvenirs = [
-  { name: "Instant luosifen", chinese: "螺蛳粉速食包", price: "CNY 10-20/pack", note: "The easiest souvenir to love. Buy a few brands (好欢螺, 螺霸王, 李子柒) at any supermarket and compare at home." },
-  { name: "Liubao tea", chinese: "六堡茶", price: "CNY 50-300", note: "A fermented dark tea from Wuzhou, aged like pu-erh. Buy from a tea shop that lets you taste first." },
-  { name: "Monk fruit", chinese: "罗汉果", price: "CNY 5-15 each", note: "Dried fruit from Guilin's Yongfu county, used to sweeten tea. A natural, calorie-free sweetener." },
-  { name: "Zhuang brocade", chinese: "壮锦", price: "CNY 80-500", note: "Handwoven Zhuang textiles in bold geometric patterns. Scarves and bags travel well; wall hangings are the real thing." },
-  { name: "Embroidered balls", chinese: "绣球", price: "CNY 20-100", note: "Zhuang love tokens from Jingxi, made of silk and ribbon. A lightweight, colorful gift." },
-  { name: "South pearls", chinese: "合浦珍珠", price: "CNY 100+", note: "Hepu, near Beihai, is one of China's historic pearl beds. Buy from a reputable shop and ask for a certificate." },
+  { name: "Instant luosifen", chinese: "螺蛳粉速食包", price: "CNY 10-20/pack", img: "/images/shopping/luosifen-pack.webp", alt: "Instant luosifen noodle pack components", note: "The easiest souvenir to love. Buy a few brands (好欢螺, 螺霸王, 李子柒) at any supermarket and compare at home." },
+  { name: "Liubao tea", chinese: "六堡茶", price: "CNY 50-300", img: "/images/shopping/liubao.webp", alt: "Liu Bao dark tea leaves with golden flower", note: "A fermented dark tea from Wuzhou, aged like pu-erh. Buy from a tea shop that lets you taste first." },
+  { name: "Monk fruit", chinese: "罗汉果", price: "CNY 5-15 each", img: "/images/shopping/monkfruit.webp", alt: "Dried monk fruit", note: "Dried fruit from Guilin's Yongfu county, used to sweeten tea. A natural, calorie-free sweetener." },
+  { name: "Zhuang brocade", chinese: "壮锦", price: "CNY 80-500", img: "/images/shopping/zhuang-brocade.webp", alt: "Zhuang brocade textile with geometric patterns", note: "Handwoven Zhuang textiles in bold geometric patterns. Scarves and bags travel well; wall hangings are the real thing." },
+  { name: "Embroidered balls", chinese: "绣球", price: "CNY 20-100", img: "/images/shopping/xiuqiu.webp", alt: "Embroidered ball sculpture at Liu Sanjie Park, Yangshuo", note: "Zhuang love tokens from Jingxi, made of silk and ribbon. A lightweight, colorful gift." },
+  { name: "South pearls", chinese: "合浦珍珠", price: "CNY 100+", img: "/images/shopping/pearl.webp", alt: "Hepu pearls from Beihai", note: "Hepu, near Beihai, is one of China's historic pearl beds. Buy from a reputable shop and ask for a certificate." },
 ];
 
 const tips = [
@@ -29,12 +29,17 @@ const tips = [
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
       {souvenirs.map((s) => (
-        <div class="bg-stone-50 rounded-2xl border border-stone-200 p-6">
-          <div class="flex items-baseline justify-between gap-2">
-            <h3 class="font-bold text-stone-900">{s.name} <span class="text-stone-400 font-medium text-sm">{s.chinese}</span></h3>
-            <span class="text-xs font-medium text-brand-700 shrink-0">{s.price}</span>
+        <div class="bg-stone-50 rounded-2xl border border-stone-200 overflow-hidden flex flex-col">
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img src={s.img} alt={s.alt} class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" loading="lazy" decoding="async" />
           </div>
-          <p class="text-sm text-stone-600 mt-2 leading-relaxed">{s.note}</p>
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="font-bold text-stone-900">{s.name} <span class="text-stone-400 font-medium text-sm">{s.chinese}</span></h3>
+              <span class="text-xs font-medium text-brand-700 shrink-0">{s.price}</span>
+            </div>
+            <p class="text-sm text-stone-600 mt-2 leading-relaxed">{s.note}</p>
+          </div>
         </div>
       ))}
     </div>

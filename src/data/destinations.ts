@@ -25,8 +25,8 @@ export interface Destination {
   image: string;
 }
 
-// Destination images are AI-generated (GPT-Image-2) via api-image-generator,
-// stored as WebP (quality 80) in public/images. Style is unified editorial travel photography.
+// Destination images are real photographs sourced from Wikimedia Commons,
+// stored as WebP in public/images. See footer photo credits for per-file attribution.
 export const destinations: Destination[] = [
   {
     slug: "guilin",
