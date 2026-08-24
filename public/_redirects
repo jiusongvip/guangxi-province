@@ -1,0 +1,6 @@
+# 兼容 /sitemap.xml 直达入口（正式索引为 sitemap-index.xml）
+/sitemap.xml /sitemap-index.xml 301
+
+# /404 与 /404/ 因 Cloudflare pretty-URL 行为以 200 返回 404 页面，修正为真实 404 状态
+/404 /404.html 404
+/404/ /404.html 404
