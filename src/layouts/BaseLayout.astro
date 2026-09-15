@@ -86,6 +86,7 @@ const orgSchema = {
     <meta name="twitter:image" content={ogImageUrl} />
 
     <script type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
+    <slot name="head-end" />
   </head>
   <body>
     <div class="loading-veil" id="loading-veil" aria-hidden="true">
