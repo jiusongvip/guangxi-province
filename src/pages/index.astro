@@ -107,7 +107,7 @@ const pageSchema = {
     media="(max-width: 768px)"
     fetchpriority="high"
   />
-  <script slot="head-end" type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
 
   <Nav />
   <main>
