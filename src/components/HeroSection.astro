@@ -100,12 +100,10 @@ const titleText = "Guangxi Province, Beyond Guilin";
         }
         requestAnimationFrame(frame);
       }
-       setTimeout(function () {
-         requestAnimationFrame(function () {
-           init();
-           requestAnimationFrame(frame);
-         });
-       }, 1200);
+       requestAnimationFrame(function () {
+         init();
+         requestAnimationFrame(frame);
+       });
        var onResize;
       window.addEventListener("resize", function () { clearTimeout(onResize); onResize = setTimeout(init, 200); }, { passive: true });
     }
