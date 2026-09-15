@@ -11,7 +11,7 @@ export interface Props {
 
 const { title, description, ogImage, ogType = "website", noindex = false } = Astro.props;
 
-const siteName = "Guangxi Province";
+const siteName = "Guangxi Province Travel Guide";
 const fullTitle = title.includes("Guangxi") ? title : `${title} | ${siteName}`;
 const canonicalURL =
   Astro.url.pathname === "/"
@@ -69,6 +69,7 @@ const orgSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     {!noindex && <link rel="alternate" hreflang="en" href={canonicalURL} />}
+    {!noindex && <link rel="alternate" hreflang="x-default" href={canonicalURL} />}
 
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />

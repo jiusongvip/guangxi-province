@@ -12,7 +12,7 @@ export default defineConfig({
   integrations: [
     sitemap({
       lastmod: new Date(),
-      filter: (page) => !page.includes("/privacy/"),
+      filter: (page) => !page.includes("/privacy/") && !page.includes("/terms/"),
     }),
   ],
   vite: {

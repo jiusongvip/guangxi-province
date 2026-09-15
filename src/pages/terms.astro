@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Terms of Use | Guangxi Province Travel Guide"
+  description="Terms of use for the Guangxi Province Travel Guide: how the information here may be used, accuracy notes, image licensing and external links."
+  noindex={true}
+>
+  <Nav solid />
+  <main class="pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-900 pb-1">Terms of Use</h1>
+      <div class="mt-8 space-y-5 text-stone-600 leading-relaxed">
+        <p>
+          By using this website you agree to these terms. If you do not agree with them, please do not use the site.
+        </p>
+        <h2 class="text-xl font-bold text-stone-900 mt-8">The information we provide</h2>
+        <p>
+          This guide is written for trip planning and is provided for general informational purposes only. Prices, visa rules, transport timetables and opening hours change; always confirm critical details with official sources such as the <a href="https://www.nia.gov.cn/" target="_blank" rel="noopener" class="text-brand-800 underline underline-offset-2">National Immigration Administration</a> or <a href="https://www.12306.cn/" target="_blank" rel="noopener" class="text-brand-800 underline underline-offset-2">China Railway 12306</a> before you travel. We do not accept liability for losses arising from reliance on this content.
+        </p>
+        <h2 class="text-xl font-bold text-stone-900 mt-8">Use of content</h2>
+        <p>
+          You may read, print and share short excerpts of our text for personal, non-commercial use with attribution and a link back. Republishing full pages, scraping the site in bulk or using the content for commercial purposes requires prior written permission — <a href="/contact/" class="text-brand-800 underline underline-offset-2">contact us</a> first.
+        </p>
+        <h2 class="text-xl font-bold text-stone-900 mt-8">Images</h2>
+        <p>
+          Site photography comes from Wikimedia Commons under CC BY, CC BY-SA or public-domain terms; individual credits are listed in the footer. Each image remains subject to its original licence, and the copyright stays with the named author.
+        </p>
+        <h2 class="text-xl font-bold text-stone-900 mt-8">External links</h2>
+        <p>
+          We link to third-party sites for convenience. We do not control them and are not responsible for their content or policies.
+        </p>
+        <h2 class="text-xl font-bold text-stone-900 mt-8">Changes</h2>
+        <p>
+          We may update these terms and the site at any time. Continued use after a change means you accept the new terms. See our <a href="/privacy/" class="text-brand-800 underline underline-offset-2">privacy policy</a> for how the site handles data.
+        </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
