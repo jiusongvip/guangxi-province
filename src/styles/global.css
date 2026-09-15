@@ -381,7 +381,7 @@ section[id] {
 /* Split-letter reveal */
 .split-char {
   display: inline-block;
-  animation: charIn 0.7s ease both;
+  animation: charIn 0.5s ease both;
   animation-delay: var(--d, 0s);
 }
 @keyframes charIn {

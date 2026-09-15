@@ -117,8 +117,7 @@ const orgSchema = {
       var dismiss = function () { veil.classList.add("done"); };
       if (reduce) { dismiss(); }
       else {
-        setTimeout(dismiss, 350);
-        window.addEventListener("load", function () { setTimeout(dismiss, 150); });
+        requestAnimationFrame(function () { setTimeout(dismiss, 200); });
       }
     }
 
@@ -152,7 +151,7 @@ const orgSchema = {
     var nav = document.getElementById("main-nav");
     if (nav) {
       var onNavScroll = function () { nav.classList.toggle("nav-solid", window.scrollY > 60); };
-      onNavScroll();
+      requestAnimationFrame(onNavScroll);
       window.addEventListener("scroll", onNavScroll, { passive: true });
     }
 
