@@ -116,7 +116,7 @@ const orgSchema = {
       var dismiss = function () { veil.classList.add("done"); };
       if (reduce) { dismiss(); }
       else {
-        requestAnimationFrame(function () { setTimeout(dismiss, 200); });
+        requestAnimationFrame(function () { requestAnimationFrame(dismiss); });
       }
     }
 
