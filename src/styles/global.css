@@ -238,48 +238,6 @@ section[id] {
 }
 
 /* ---------------------------------------------------------------------------
-   Loading ritual veil
---------------------------------------------------------------------------- */
-.loading-veil {
-  position: fixed;
-  inset: 0;
-  z-index: 10000;
-  background: var(--color-stone-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-}
-.loading-veil.done {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.loading-veil .loading-mark {
-  width: 54px;
-  height: 54px;
-  border: 1px solid var(--color-stone-400);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-brand-600);
-  animation: loadingBreath 1.6s ease-in-out infinite;
-}
-.loading-veil .loading-word {
-  margin-top: 1.1rem;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--color-stone-900);
-}
-@keyframes loadingBreath {
-  0%, 100% { opacity: 0.35; transform: scale(0.96); }
-  50% { opacity: 1; transform: scale(1); }
-}
-
-/* ---------------------------------------------------------------------------
    Hero stage
 --------------------------------------------------------------------------- */
 .hero-stage {
@@ -466,5 +424,4 @@ section[id] {
   .split-char { animation: none; opacity: 1; transform: none; }
   .dest-card img { transition: none; }
   .card-img img { transition: none; }
-  .loading-veil .loading-mark { animation: none; }
 }
