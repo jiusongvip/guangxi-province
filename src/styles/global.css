@@ -58,9 +58,26 @@
   src: url("/fonts/cormorant-garamond-latin-700-normal.woff2") format("woff2");
 }
 
+@font-face {
+  font-family: "Cormorant Fallback";
+  src: local("Georgia");
+  size-adjust: 88.3803%;
+  ascent-override: 104.5482%;
+  descent-override: 32.4733%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Outfit Fallback";
+  src: local("Arial");
+  size-adjust: 99.8204%;
+  ascent-override: 100.18%;
+  descent-override: 26.0468%;
+  line-gap-override: 0%;
+}
+
 @theme {
-  --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: "Cormorant Garamond", "Outfit", ui-serif, Georgia, serif;
+  --font-sans: "Outfit", "Outfit Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display: "Cormorant Garamond", "Cormorant Fallback", ui-serif, Georgia, serif;
 
   /* Paper + ink neutral scale (warm cream paper over near-black ink). */
   --color-stone-50: #fffdf3;
