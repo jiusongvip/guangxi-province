@@ -19,10 +19,10 @@ const backupDir = fileURLToPath(new URL("../.images-orig", import.meta.url));
 // Hero (LCP) and OG images keep full width; card images are displayed at
 // ~380-420px (2x => ~860w), so 900px caps at q72 are plenty.
 const rules = {
-  "guangxi-hero.webp": { width: 1920, quality: 72 },
+  "guangxi-hero.webp": { width: 1672, quality: 67 },
   "guangxi-hero-1000.webp": { width: 1000, quality: 72 },
   "og-guangxi.webp": { width: 1200, quality: 75 },
-  default: { width: 900, quality: 72 },
+  default: { width: 800, quality: 66 },
 };
 
 if (!existsSync(backupDir)) mkdirSync(backupDir);
