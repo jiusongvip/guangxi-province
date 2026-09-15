@@ -99,10 +99,15 @@ const pageSchema = {
   ogImage="/images/og-guangxi.webp"
   ogType="website"
 >
-  <slot name="head">
-    <link rel="preload" as="image" href="/images/guangxi-hero.webp" fetchpriority="high" />
-    <script type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
-  </slot>
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    href="/images/guangxi-hero-1000.webp"
+    media="(max-width: 768px)"
+    fetchpriority="high"
+  />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
 
   <Nav />
   <main>

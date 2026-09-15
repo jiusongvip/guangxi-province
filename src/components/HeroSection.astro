@@ -3,15 +3,18 @@ const titleText = "Guangxi Province, Beyond Guilin";
 ---
 <section class="hero-stage">
   <div class="hero-bg">
-    <img
-      src="/images/guangxi-hero.webp"
-      alt="Li River karst peaks rising from the water near Guilin, Guangxi"
-      width="1672"
-      height="941"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-    />
+    <picture>
+      <source media="(max-width: 768px)" srcset="/images/guangxi-hero-1000.webp" width="1000" height="562" />
+      <img
+        src="/images/guangxi-hero.webp"
+        alt="Li River karst peaks rising from the water near Guilin, Guangxi"
+        width="1672"
+        height="941"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
   </div>
   <canvas class="hero-particles" id="hero-particles" aria-hidden="true"></canvas>
 
