@@ -125,6 +125,13 @@ section[id] {
   scroll-margin-top: 5rem;
 }
 
+/* Skip layout/paint of far-below-viewport sections until they near the screen
+   (cuts first-frame style/layout cost on this single-page doc). */
+main > section:nth-of-type(n + 10) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1200px;
+}
+
 /* Small-caps overline above display headings */
 .overline {
   font-family: var(--font-sans);
