@@ -117,7 +117,23 @@ const orgSchema = {
       var dismiss = function () { veil.classList.add("done"); };
       if (reduce) { dismiss(); }
       else {
-        requestAnimationFrame(function () { requestAnimationFrame(dismiss); });
+        var dismissed = false;
+        var go = function () {
+          if (dismissed) return;
+          dismissed = true;
+          requestAnimationFrame(dismiss);
+        };
+        setTimeout(go, 600);
+        var pending = [];
+        if (document.fonts && document.fonts.load) {
+          try {
+            pending.push(document.fonts.load('700 1em "Cormorant Garamond"'));
+            pending.push(document.fonts.load('400 1em "Outfit"'));
+            pending.push(document.fonts.load('600 1em "Outfit"'));
+          } catch (e) {}
+        }
+        if (pending.length) Promise.all(pending).then(go, go);
+        else go();
       }
     }
 
