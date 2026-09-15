@@ -34,7 +34,7 @@ const addons = [
               >
                 <p class="font-semibold text-stone-900">{t.label}</p>
                 <p class="text-sm text-stone-500 mt-1">{t.note}</p>
-                <p class="text-sm font-medium text-brand-700 mt-2">CNY {t.daily}/day</p>
+                <p class="text-sm font-medium text-brand-800 mt-2">CNY {t.daily}/day</p>
               </button>
             ))}
           </div>
@@ -43,10 +43,10 @@ const addons = [
         <div>
           <div class="flex items-baseline justify-between mb-3">
             <p class="text-sm font-semibold text-stone-900">Trip length</p>
-            <p class="text-sm font-medium text-brand-700"><span id="budget-days-label">7</span> days</p>
+            <p class="text-sm font-medium text-brand-800"><span id="budget-days-label">7</span> days</p>
           </div>
-          <input id="budget-days" type="range" min="3" max="14" step="1" value="7" class="w-full accent-brand-700" />
-          <div class="flex justify-between text-xs text-stone-400 mt-1">
+          <input id="budget-days" type="range" min="3" max="14" step="1" value="7" class="w-full accent-brand-700" aria-label="Trip length in days" />
+          <div class="flex justify-between text-xs text-stone-600 mt-1">
             <span>3 days</span>
             <span>14 days</span>
           </div>
@@ -75,7 +75,7 @@ const addons = [
           <p class="text-brand-200/70 text-sm mt-3 leading-relaxed">
             Based on <span id="budget-tier-label">mid-range</span> at CNY <span id="budget-daily-label">550</span>/day over <span id="budget-days-label-2">7</span> days, plus your extras.
           </p>
-          <p class="text-brand-200/50 text-xs mt-5 leading-relaxed">
+          <p class="text-brand-200/75 text-xs mt-5 leading-relaxed">
             Excludes international flights to China. Prices are 2026 averages and move with the season.
           </p>
         </div>

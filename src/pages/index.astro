@@ -95,36 +95,39 @@ const pageSchema = {
   ogType="website"
 >
   <slot name="head">
+    <link rel="preload" as="image" href="/images/guangxi-hero.webp" fetchpriority="high" />
     <script type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
   </slot>
 
   <Nav />
-  <HeroSection />
-  <PageTOC />
-  <QuickFacts />
-  <WhyGuangxi />
-  <DestinationMatcher />
-  <MapSection />
-  <DestinationsSection />
-  <QuickMatrix />
-  <TripPlanner />
-  <BudgetCalculator />
-  <CostSection />
-  <CompareSection />
-  <MidCTA />
-  <FoodSection />
-  <ShoppingSection />
-  <BestTimeSection />
-  <PackingSection />
-  <AccommodationSection />
-  <TransportSection />
-  <PlanSection />
-  <CultureSection />
-  <SafetySection />
-  <GallerySection />
-  <TrustSection />
-  <FAQSection />
-  <ChecklistSection />
-  <CTASection />
+  <main>
+    <HeroSection />
+    <PageTOC />
+    <QuickFacts />
+    <WhyGuangxi />
+    <DestinationMatcher />
+    <MapSection />
+    <DestinationsSection />
+    <QuickMatrix />
+    <TripPlanner />
+    <BudgetCalculator />
+    <CostSection />
+    <CompareSection />
+    <MidCTA />
+    <FoodSection />
+    <ShoppingSection />
+    <BestTimeSection />
+    <PackingSection />
+    <AccommodationSection />
+    <TransportSection />
+    <PlanSection />
+    <CultureSection />
+    <SafetySection />
+    <GallerySection />
+    <TrustSection />
+    <FAQSection />
+    <ChecklistSection />
+    <CTASection />
+  </main>
   <Footer />
 </BaseLayout>

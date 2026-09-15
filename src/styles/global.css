@@ -1,5 +1,63 @@
 @import "tailwindcss";
 
+/* Self-hosted subsets (from @fontsource files, latin normal). */
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Outfit";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/outfit-latin-800-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/cormorant-garamond-latin-500-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/cormorant-garamond-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/cormorant-garamond-latin-700-normal.woff2") format("woff2");
+}
+
 @theme {
   --font-sans: "Outfit", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-display: "Cormorant Garamond", "Outfit", ui-serif, Georgia, serif;
@@ -190,7 +248,7 @@ section[id] {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.7s ease, visibility 0.7s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 .loading-veil.done {
   opacity: 0;
@@ -323,13 +381,12 @@ section[id] {
 /* Split-letter reveal */
 .split-char {
   display: inline-block;
-  opacity: 0;
-  transform: translateY(0.4em);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  animation: charIn 0.7s ease both;
+  animation-delay: var(--d, 0s);
 }
-.split-char.in {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes charIn {
+  from { opacity: 0; transform: translateY(0.4em); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ---------------------------------------------------------------------------
@@ -402,7 +459,7 @@ section[id] {
   .hero-bg img { animation: none; }
   .hero-scroll::after { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .split-char { opacity: 1; transform: none; transition: none; }
+  .split-char { animation: none; opacity: 1; transform: none; }
   .dest-card img { transition: none; }
   .card-img img { transition: none; }
   .loading-veil .loading-mark { animation: none; }

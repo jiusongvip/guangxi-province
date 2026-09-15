@@ -54,25 +54,25 @@ const dietNotes = [
       </a>
       <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="bg-white rounded-xl border border-stone-200 p-6">
-          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">What's in it</p>
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-800">What's in it</p>
           <p class="text-sm text-stone-600 mt-2 leading-relaxed">
             Rice noodles, a broth simmered from river snails and pork bones, pickled bamboo shoot (the famous smell), fried tofu skin (腐竹), peanuts, black fungus, and a spoon of chili oil. Add a fried egg and extra bamboo shoot.
           </p>
         </div>
         <div class="bg-white rounded-xl border border-stone-200 p-6">
-          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">How to eat it</p>
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-800">How to eat it</p>
           <p class="text-sm text-stone-600 mt-2 leading-relaxed">
             Order 微辣 (mild) for your first bowl, add vinegar to taste, and slurp fast while the noodles are springy. In Liuzhou it is breakfast and late-night food — the busiest stalls at 1 AM are the best.
           </p>
         </div>
         <div class="bg-white rounded-xl border border-stone-200 p-6">
-          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Where to get it</p>
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-800">Where to get it</p>
           <p class="text-sm text-stone-600 mt-2 leading-relaxed">
             Anywhere, but the reference bowl is in Liuzhou. Look for the stall with the longest line rather than any single name. Outside Liuzhou, it is on menus across the region.
           </p>
         </div>
         <div class="bg-white rounded-xl border border-stone-200 p-6">
-          <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">Take it home</p>
+          <p class="text-xs font-semibold uppercase tracking-wider text-brand-800">Take it home</p>
           <p class="text-sm text-stone-600 mt-2 leading-relaxed">
             Instant luosifen packs (好欢螺, 螺霸王, 李子柒) are in every supermarket. Boil the noodles, then the broth, then assemble. It is 80% of the real thing and a great souvenir.
           </p>
@@ -87,10 +87,10 @@ const dietNotes = [
         {dishes.map((dish) => (
           <div class="bg-white rounded-xl border border-stone-200 p-5">
             <div class="flex items-baseline justify-between gap-2">
-              <h4 class="font-bold text-stone-900">{dish.name} <span class="text-stone-400 font-medium text-sm">{dish.chinese}</span></h4>
-              <span class="text-xs font-medium text-brand-700 shrink-0">{dish.price}</span>
+              <h4 class="font-bold text-stone-900">{dish.name} <span class="text-stone-600 font-medium text-sm">{dish.chinese}</span></h4>
+              <span class="text-xs font-medium text-brand-800 shrink-0">{dish.price}</span>
             </div>
-            <p class="text-xs text-stone-400 mt-0.5">{dish.place}</p>
+            <p class="text-xs text-stone-600 mt-0.5">{dish.place}</p>
             <p class="text-sm text-stone-600 mt-2 leading-relaxed">{dish.note}</p>
           </div>
         ))}

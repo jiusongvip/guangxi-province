@@ -31,7 +31,7 @@ const festivals = [
               <img src={c.img} alt={c.alt} class="w-full h-full object-cover" loading="lazy" decoding="async" />
             </div>
             <div class="p-5 flex flex-col flex-1">
-              <h3 class="text-lg font-bold text-stone-900">{c.name} <span class="text-stone-400 font-medium">{c.chinese}</span></h3>
+              <h3 class="text-lg font-bold text-stone-900">{c.name} <span class="text-stone-600 font-medium">{c.chinese}</span></h3>
               <p class="text-stone-600 text-sm md:text-sm leading-relaxed mt-2">{c.body}</p>
             </div>
           </div>
@@ -57,7 +57,7 @@ const festivals = [
             <tbody class="divide-y divide-stone-100">
               {festivals.map((f) => (
                 <tr>
-                  <td class="py-3 pr-4 text-stone-700 font-medium whitespace-nowrap">{f.name} <span class="text-stone-400">{f.chinese}</span></td>
+                  <td class="py-3 pr-4 text-stone-700 font-medium whitespace-nowrap">{f.name} <span class="text-stone-600">{f.chinese}</span></td>
                   <td class="py-3 pr-4 text-stone-600 whitespace-nowrap">{f.when}</td>
                   <td class="py-3 text-stone-600">{f.what}</td>
                 </tr>

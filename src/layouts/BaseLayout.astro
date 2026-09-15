@@ -1,13 +1,5 @@
 ﻿---
 import "../styles/global.css";
-import "@fontsource/outfit/400.css";
-import "@fontsource/outfit/500.css";
-import "@fontsource/outfit/600.css";
-import "@fontsource/outfit/700.css";
-import "@fontsource/outfit/800.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/600.css";
-import "@fontsource/cormorant-garamond/700.css";
 
 export interface Props {
   title: string;
@@ -45,19 +37,31 @@ const orgSchema = {
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5632FS4FHW"></script>
+    <!-- Google tag (gtag.js) — injected after load to keep it off the critical path -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-5632FS4FHW");
+      (function () {
+        var inject = function () {
+          setTimeout(function () {
+            var s = document.createElement("script");
+            s.async = true;
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-5632FS4FHW";
+            document.head.appendChild(s);
+          }, 2000);
+        };
+        if (document.readyState === "complete") inject();
+        else window.addEventListener("load", inject, { once: true });
+      })();
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/outfit-latin-400-normal.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/fonts/cormorant-garamond-latin-700-normal.woff2" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robotsContent} />
@@ -112,8 +116,8 @@ const orgSchema = {
       var dismiss = function () { veil.classList.add("done"); };
       if (reduce) { dismiss(); }
       else {
-        setTimeout(dismiss, 900);
-        window.addEventListener("load", function () { setTimeout(dismiss, 400); });
+        setTimeout(dismiss, 350);
+        window.addEventListener("load", function () { setTimeout(dismiss, 150); });
       }
     }
 

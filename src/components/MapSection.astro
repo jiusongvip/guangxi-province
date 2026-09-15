@@ -27,13 +27,13 @@ const branches = [
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
       <div class="lg:col-span-6">
-        <p class="text-xs font-semibold uppercase tracking-wider text-brand-700 mb-5">The rail spine · north to south</p>
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-800 mb-5">The rail spine · north to south</p>
         <div class="border-l-2 border-dashed border-brand-300 pl-7 space-y-7">
           {spine.map((s) => (
             <div class="relative">
               <span class="absolute -left-[37px] top-1.5 w-3.5 h-3.5 rounded-full bg-brand-600 border-2 border-white"></span>
-              <p class="text-xs font-semibold text-brand-700 uppercase tracking-wider">{s.tag}</p>
-              <h3 class="text-lg font-bold text-stone-900 mt-1">{s.name} <span class="text-stone-400 font-medium text-base">{s.chinese}</span></h3>
+              <p class="text-xs font-semibold text-brand-800 uppercase tracking-wider">{s.tag}</p>
+              <h3 class="text-lg font-bold text-stone-900 mt-1">{s.name} <span class="text-stone-600 font-medium text-base">{s.chinese}</span></h3>
               <p class="text-sm text-stone-600 mt-1.5 leading-relaxed">{s.note}</p>
             </div>
           ))}
@@ -41,13 +41,13 @@ const branches = [
       </div>
 
       <div class="lg:col-span-6">
-        <p class="text-xs font-semibold uppercase tracking-wider text-brand-700 mb-5">Branches off the spine</p>
+        <p class="text-xs font-semibold uppercase tracking-wider text-brand-800 mb-5">Branches off the spine</p>
         <div class="space-y-4">
           {branches.map((b) => (
             <div class="bg-white rounded-xl border border-stone-200 p-5">
               <div class="flex items-baseline justify-between gap-3">
-                <h3 class="font-bold text-stone-900">{b.name} <span class="text-stone-400 font-medium text-sm">{b.chinese}</span></h3>
-                <span class="text-xs font-medium text-brand-700 whitespace-nowrap shrink-0">{b.rel}</span>
+                <h3 class="font-bold text-stone-900">{b.name} <span class="text-stone-600 font-medium text-sm">{b.chinese}</span></h3>
+                <span class="text-xs font-medium text-brand-800 whitespace-nowrap shrink-0">{b.rel}</span>
               </div>
               <p class="text-sm text-stone-600 mt-2 leading-relaxed">{b.note}</p>
             </div>

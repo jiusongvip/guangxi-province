@@ -105,9 +105,9 @@ const bySlug = Object.fromEntries(destinations.map((d) => [d.slug, d]));
         <div class={`matcher-panel ${i === 0 ? "" : "hidden"}`} data-panel={m.id} role="tabpanel">
           <div class="p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div class="lg:col-span-4">
-              <p class="text-xs font-semibold uppercase tracking-wider text-brand-700">{m.tagline}</p>
+              <p class="text-xs font-semibold uppercase tracking-wider text-brand-800">{m.tagline}</p>
               <h3 class="text-2xl font-bold text-stone-900 mt-2">{m.label}</h3>
-              <p class="text-sm font-medium text-brand-700 mt-4">{m.route}</p>
+              <p class="text-sm font-medium text-brand-800 mt-4">{m.route}</p>
               <p class="inline-flex items-center gap-2 text-sm text-stone-500 mt-2">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 {m.days}
@@ -122,11 +122,11 @@ const bySlug = Object.fromEntries(destinations.map((d) => [d.slug, d]));
                     <div class="rounded-xl border border-stone-200 overflow-hidden flex flex-col">
                       <div class="relative aspect-[16/9] overflow-hidden">
                         <img src={d.image} alt={`${d.name} ${d.chinese}, Guangxi`} class="w-full h-full object-cover" loading="lazy" decoding="async" />
-                        <div class="absolute top-3 left-3 px-2.5 py-1 bg-brand-700/90 text-white text-xs font-semibold rounded-full">{d.minDays}</div>
+                        <div class="absolute top-3 left-3 px-2.5 py-1 bg-brand-900/90 text-white text-xs font-semibold rounded-full">{d.minDays}</div>
                       </div>
                       <div class="p-4 flex flex-col flex-1">
-                        <h4 class="font-bold text-stone-900">{d.name} <span class="text-stone-400 font-medium text-sm">{d.chinese}</span></h4>
-                        <p class="text-brand-700 text-xs font-medium mt-1">{d.tagline}</p>
+                        <h4 class="font-bold text-stone-900">{d.name} <span class="text-stone-600 font-medium text-sm">{d.chinese}</span></h4>
+                        <p class="text-brand-800 text-xs font-medium mt-1">{d.tagline}</p>
                       </div>
                     </div>
                   );

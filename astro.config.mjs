@@ -6,7 +6,15 @@ export default defineConfig({
   site: "https://www.guangxi-province.com",
   trailingSlash: "always",
   server: { port: 4324 },
-  integrations: [sitemap({ lastmod: new Date("2026-08-19") })],
+  build: {
+    inlineStylesheets: "always",
+  },
+  integrations: [
+    sitemap({
+      lastmod: new Date(),
+      filter: (page) => !page.includes("/privacy/"),
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

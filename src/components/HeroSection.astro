@@ -1,4 +1,5 @@
 ---
+const titleText = "Guangxi Province, Beyond Guilin";
 ---
 <section class="hero-stage">
   <div class="hero-bg">
@@ -17,7 +18,9 @@
   <div class="hero-content">
     <p class="overline">Guangxi · Southwest China · 2026</p>
     <h1 id="hero-title" class="hero-title text-5xl md:text-7xl lg:text-8xl">
-      Guangxi Province, Beyond Guilin
+      {titleText.split("").map((ch, i) => (
+        <span class="split-char" style={`--d:${(0.1 + i * 0.012).toFixed(3)}s`}>{ch === " " ? "\u00a0" : ch}</span>
+      ))}
     </h1>
     <p class="hero-sub text-base md:text-lg leading-relaxed">
       Karst peaks, a volcanic island, a Vietnam-border waterfall and the world's favorite noodle soup.
@@ -44,31 +47,6 @@
 <script is:inline>
   (function () {
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    // Split-letter reveal on the hero title
-    var title = document.getElementById("hero-title");
-    if (title && !reduce) {
-      var text = title.textContent || "";
-      title.textContent = "";
-      var chars = text.split("");
-      var frag = document.createDocumentFragment();
-      chars.forEach(function (ch) {
-        var s = document.createElement("span");
-        s.className = "split-char";
-        s.textContent = ch === " " ? "\u00a0" : ch;
-        frag.appendChild(s);
-      });
-      title.appendChild(frag);
-      var spans = title.querySelectorAll(".split-char");
-      spans.forEach(function (s, i) {
-        s.style.transitionDelay = (0.35 + i * 0.025).toFixed(3) + "s";
-      });
-      requestAnimationFrame(function () {
-        setTimeout(function () {
-          spans.forEach(function (s) { s.classList.add("in"); });
-        }, 60);
-      });
-    }
 
     // Particle stage — floating leaf-green embers over the hero
     var canvas = document.getElementById("hero-particles");
