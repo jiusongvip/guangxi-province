@@ -125,14 +125,6 @@ section[id] {
   scroll-margin-top: 5rem;
 }
 
-/* Skip layout/paint of far-below-viewport sections until they near the screen
-   (big initial-render win on this single-page doc). First few sections stay
-   normal to avoid a simultaneous render/long-task burst on load. */
-main > section:nth-of-type(n + 10) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 1200px;
-}
-
 /* Small-caps overline above display headings */
 .overline {
   font-family: var(--font-sans);
