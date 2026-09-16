@@ -406,23 +406,6 @@ section[id] {
   scrollbar-width: none;
 }
 
-/*
- * Off-screen section rendering. This is one very long single page (~26 sections),
- * so most sections start below the fold. content-visibility:auto lets the browser
- * skip layout, style and paint work for sections far below the viewport, cutting
- * first-paint / initial-layout cost. contain-intrinsic-size (with the auto keyword,
- * which remembers the real size after the section is first rendered) reserves space
- * so the scrollbar and anchor jumps stay stable. The hero (first section) is the LCP
- * and always above the fold, so it stays fully rendered.
- */
-main > section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 640px;
-}
-main > section:first-child {
-  content-visibility: visible;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .hero-title { animation: none; opacity: 1; transform: none; }
   .dest-card img { transition: none; }
