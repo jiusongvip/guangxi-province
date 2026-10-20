@@ -1,0 +1,191 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { destinations } from "../../data/destinations";
+import { SITE } from "../../data/config";
+import { homeAnchor } from "../../utils/paths";
+import { destinationFaqs, destinationPageSchema, breadcrumbSchema, faqSchema } from "../../utils/schema";
+
+export function getStaticPaths() {
+  return destinations.map((d) => ({ params: { slug: d.slug }, props: { d } }));
+}
+
+const { slug } = Astro.params;
+const d = destinations.find((x) => x.slug === slug);
+if (!d) return Astro.redirect("/destinations/");
+
+const here = Astro.url.pathname;
+const url = `${SITE.url}${here}`;
+const faqs = destinationFaqs(d);
+const siblings = destinations.filter((x) => x.slug !== d.slug);
+
+const title = `${d.name} Travel Guide | ${SITE.name}`;
+const descA = `${d.name} travel guide — ${d.tagline}.`;
+const descB = ` Plan for ${d.minDays}.`;
+const descC = ` Best time: ${d.bestTime}.`;
+const description =
+  (descA + descB + descC).length <= 158
+    ? descA + descB + descC
+    : (descA + descB).length <= 158
+      ? descA + descB
+      : descA;
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    destinationPageSchema(d, url, SITE.name),
+    breadcrumbSchema([
+      { name: "Home", url: `${SITE.url}/` },
+      { name: "Destinations", url: `${SITE.url}/destinations/` },
+      { name: d.name, url },
+    ]),
+    faqSchema(faqs),
+  ],
+};
+
+const facts = [
+  { label: "Region", value: d.region },
+  { label: "How long", value: d.minDays },
+  { label: "Best time", value: d.bestTime },
+  { label: "Climate", value: d.climate },
+];
+---
+
+<BaseLayout title={title} description={description} ogImage={d.image} ogType="article">
+  <script slot="head-end" type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
+
+  <Nav solid />
+  <main class="pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="text-sm text-stone-500 mb-8" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-brand-800">Home</a>
+        <span class="mx-2">/</span>
+        <a href="/destinations/" class="hover:text-brand-800">Destinations</a>
+        <span class="mx-2">/</span>
+        <span class="text-stone-700">{d.name}</span>
+      </nav>
+
+      <p class="text-brand-800 text-xs font-semibold uppercase tracking-[0.18em]">{d.region}</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-900 mt-2">
+        {d.name} <span class="text-stone-400 font-medium text-2xl md:text-3xl">{d.chinese}</span>
+      </h1>
+      <p class="text-lg text-stone-600 mt-4 leading-relaxed">{d.tagline}.</p>
+
+      <img
+        src={d.image}
+        alt={`${d.name} ${d.chinese}, Guangxi`}
+        class="w-full aspect-[16/9] object-cover rounded-2xl mt-8"
+        width="1200"
+        height="675"
+        loading="eager"
+        decoding="async"
+      />
+
+      <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+        {facts.map((f) => (
+          <div class="bg-stone-50 border border-stone-200 rounded-xl p-4">
+            <dt class="text-xs font-semibold uppercase tracking-wider text-stone-500">{f.label}</dt>
+            <dd class="text-sm text-stone-700 mt-1.5 leading-relaxed">{f.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <div class="mt-12 text-stone-600 leading-relaxed">
+        <h2 class="text-2xl font-bold text-stone-900">What is there to see in {d.name}?</h2>
+        <ul class="mt-4 space-y-2">
+          {d.highlights.map((h) => (
+            <li class="flex gap-2"><span class="text-brand-600 mt-0.5">-</span><span>{h}</span></li>
+          ))}
+        </ul>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10">What it was like on the ground</h2>
+        <p class="mt-4">{d.experienceNote}</p>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10">How do you get to {d.name}?</h2>
+        <p class="mt-4">{d.transport.howToGet}</p>
+        <p class="mt-3"><span class="font-semibold text-stone-800">By train:</span> {d.transport.byTrain}</p>
+        <p class="mt-3"><span class="font-semibold text-stone-800">By air:</span> {d.transport.byFlight}</p>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10">What should you eat in {d.name}?</h2>
+        <div class="mt-4 space-y-4">
+          {d.namedFoods.map((f) => (
+            <div class="bg-stone-50 border border-stone-200 rounded-xl p-4">
+              <p class="font-semibold text-stone-900">{f.name} <span class="text-brand-800 font-medium text-sm">{f.price}</span></p>
+              <p class="text-sm mt-1.5">{f.why}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10">A sample day in {d.name}</h2>
+        {d.dayPlans.map((dp) => (
+          <div class="mt-4">
+            <p class="font-semibold text-stone-900">{dp.label}</p>
+            <ol class="mt-2 space-y-1.5 list-decimal pl-5">
+              {dp.steps.map((s) => <li>{s}</li>)}
+            </ol>
+          </div>
+        ))}
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10">Where should you stay in {d.name}?</h2>
+        <div class="mt-4 space-y-3">
+          {d.accommodation.map((a) => (
+            <p class="text-sm leading-relaxed"><span class="font-semibold text-stone-800 text-base">{a.type}</span> <span class="text-brand-800 font-medium">({a.priceRange})</span> — {a.detail}</p>
+          ))}
+        </div>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10">Is {d.name} right for you?</h2>
+        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="rounded-xl border border-stone-200 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-stone-500">Worth it for</p>
+            <p class="text-sm text-stone-700 mt-1.5 leading-relaxed">{d.bestFor}</p>
+          </div>
+          <div class="rounded-xl border border-stone-200 p-4">
+            <p class="text-xs font-semibold uppercase tracking-wider text-stone-500">Skip it if</p>
+            <p class="text-sm text-stone-700 mt-1.5 leading-relaxed">{d.notFor}</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10">Know before you go</h2>
+        <div class="mt-4 space-y-3">
+          {d.localWarnings.map((w) => (
+            <div class="border-l-2 border-brand-600 bg-stone-50 rounded-r-xl p-4">
+              <p class="font-semibold text-stone-900 text-sm">{w.title}</p>
+              <p class="text-sm mt-1">{w.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-10" id="faq">{d.name} FAQ</h2>
+        <div class="mt-4 divide-y divide-stone-200 border border-stone-200 rounded-xl bg-white">
+          {faqs.map((f) => (
+            <div class="faq-item">
+              <button class="py-4 px-4 flex items-center justify-between w-full text-left" aria-expanded="false">
+                <span class="text-sm font-medium text-stone-900 pr-6">{f.q}</span>
+                <svg class="w-4 h-4 text-stone-400 flex-shrink-0 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9" /></svg>
+              </button>
+              <div class="faq-answer"><p class="px-4 pb-4 text-sm text-stone-500 leading-relaxed">{f.a}</p></div>
+            </div>
+          ))}
+        </div>
+
+        <h2 class="text-2xl font-bold text-stone-900 mt-12">Other places in Guangxi</h2>
+        <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {siblings.map((s) => (
+            <li>
+              <a href={`/destinations/${s.slug}/`} class="block border border-stone-200 rounded-xl p-4 hover:border-brand-600 transition-colors">
+                <span class="font-semibold text-stone-900 text-sm">{s.name} <span class="text-stone-400 font-normal">{s.chinese}</span></span>
+                <span class="block text-xs text-stone-500 mt-1 leading-relaxed">{s.tagline}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <p class="mt-10 text-sm text-stone-500">
+          Planning the whole region? See all <a href={homeAnchor("destinations", here)} class="text-brand-800 hover:text-brand-900 underline">Guangxi destinations</a>, the <a href={homeAnchor("itineraries", here)} class="text-brand-800 hover:text-brand-900 underline">ready-made itineraries</a>, the <a href={homeAnchor("food", here)} class="text-brand-800 hover:text-brand-900 underline">food guide</a> and the <a href={homeAnchor("best-time", here)} class="text-brand-800 hover:text-brand-900 underline">best time to visit</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

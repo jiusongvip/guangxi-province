@@ -59,6 +59,12 @@ import { destinations } from "../data/destinations";
               <p class="text-sm text-stone-500"><span class="font-medium text-stone-700">Best for:</span> {d.bestFor}</p>
             </div>
 
+            <p class="mt-4">
+              <a href={`/destinations/${d.slug}/`} class="text-sm font-semibold text-brand-800 hover:text-brand-900 underline decoration-brand-200 underline-offset-4">
+                {d.name} travel guide: getting there, where to stay, what to eat
+              </a>
+            </p>
+
             <details class="mt-4 pt-4 border-t border-stone-200 group">
               <summary class="cursor-pointer flex items-center justify-between text-sm font-semibold text-brand-800 list-none">
                 Climate, transport and where to stay

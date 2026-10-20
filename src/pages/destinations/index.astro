@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import { destinations } from "../../data/destinations";
+import { SITE } from "../../data/config";
+import { breadcrumbSchema } from "../../utils/schema";
+
+const title = `All Guangxi Destinations | ${SITE.name}`;
+const description = `Eight places to build a Guangxi trip around: Guilin, Yangshuo, the Longji terraces, Beihai and Weizhou Island, Detian Waterfall, Liuzhou, Huangyao and Bama.`;
+
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      name: "Guangxi destinations",
+      itemListElement: destinations.map((d, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: `${d.name} (${d.chinese})`,
+        description: d.tagline,
+        url: `${SITE.url}/destinations/${d.slug}/`,
+      })),
+    },
+    breadcrumbSchema([
+      { name: "Home", url: `${SITE.url}/` },
+      { name: "Destinations", url: `${SITE.url}/destinations/` },
+    ]),
+  ],
+};
+---
+
+<BaseLayout title={title} description={description}>
+  <script slot="head-end" type="application/ld+json" set:html={JSON.stringify(pageSchema)}></script>
+
+  <Nav solid />
+  <main class="pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-brand-800 text-xs font-semibold uppercase tracking-[0.18em]">Where to go</p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-stone-900 mt-2">Guangxi destinations</h1>
+      <p class="text-lg text-stone-600 mt-5 leading-relaxed max-w-2xl">
+        Eight places worth planning a trip around, from the karst peaks of the north-east to the beaches of the south. Each guide covers how to arrive, how long to stay, where to sleep, what to eat and what to watch out for.
+      </p>
+
+      <ul class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {destinations.map((d) => (
+          <li>
+            <a href={`/destinations/${d.slug}/`} class="group block h-full bg-stone-50 border border-stone-200 rounded-2xl overflow-hidden hover:border-brand-600 transition-colors">
+              <img src={d.image} alt={`${d.name} ${d.chinese}, Guangxi`} class="w-full aspect-[16/9] object-cover" loading="lazy" decoding="async" width="1200" height="675" />
+              <div class="p-6">
+                <p class="text-xs text-stone-500">{d.region}</p>
+                <h2 class="text-xl font-bold text-stone-900 mt-1 group-hover:text-brand-800 transition-colors">
+                  {d.name} <span class="text-stone-400 font-medium text-base">{d.chinese}</span>
+                </h2>
+                <p class="text-sm text-stone-600 mt-2 leading-relaxed">{d.tagline}</p>
+                <p class="text-xs text-stone-500 mt-4"><span class="font-semibold text-stone-700">Stay:</span> {d.minDays} &middot; <span class="font-semibold text-stone-700">Best time:</span> {d.bestTime}</p>
+                <span class="inline-block text-sm font-semibold text-brand-800 mt-4">Read the guide</span>
+              </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

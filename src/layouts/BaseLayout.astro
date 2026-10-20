@@ -115,12 +115,16 @@ const orgSchema = {
     document.querySelectorAll(".faq-item button").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var parent = btn.parentElement;
-        if (parent) parent.classList.toggle("open");
+        if (!parent) return;
+        var open = parent.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
       });
     });
 
     var nav = document.getElementById("main-nav");
-    if (nav) {
+    // Pages that render the nav already solid (every non-home page) must keep it:
+    // toggling on scroll would strip the class and leave white text on a light page.
+    if (nav && !nav.hasAttribute("data-static-solid")) {
       var onNavScroll = function () { nav.classList.toggle("nav-solid", window.scrollY > 60); };
       requestAnimationFrame(onNavScroll);
       window.addEventListener("scroll", onNavScroll, { passive: true });

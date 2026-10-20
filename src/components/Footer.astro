@@ -1,4 +1,7 @@
 ---
+import { homeAnchor } from "../utils/paths";
+import { destinations } from "../data/destinations";
+const here = Astro.url.pathname;
 ---
 <footer class="bg-stone-900 text-stone-300">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -10,17 +13,20 @@
         </p>
       </div>
       <div>
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-400">Explore</p>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-400">Places</p>
         <ul class="mt-4 space-y-2.5 text-sm">
-          <li><a href="#destinations" class="hover:text-stone-50 transition-colors">Destinations</a></li>
-          <li><a href="#itineraries" class="hover:text-stone-50 transition-colors">Itineraries</a></li>
-          <li><a href="#food" class="hover:text-stone-50 transition-colors">Food</a></li>
-          <li><a href="#faq" class="hover:text-stone-50 transition-colors">FAQ</a></li>
+          {destinations.map((d) => (
+            <li><a href={`/destinations/${d.slug}/`} class="hover:text-stone-50 transition-colors">{d.name}</a></li>
+          ))}
         </ul>
       </div>
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.18em] text-stone-400">Site</p>
         <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a href="/destinations/" class="hover:text-stone-50 transition-colors">All destinations</a></li>
+          <li><a href={homeAnchor("itineraries", here)} class="hover:text-stone-50 transition-colors">Itineraries</a></li>
+          <li><a href={homeAnchor("food", here)} class="hover:text-stone-50 transition-colors">Food</a></li>
+          <li><a href={homeAnchor("faq", here)} class="hover:text-stone-50 transition-colors">FAQ</a></li>
           <li><a href="/about/" class="hover:text-stone-50 transition-colors">About</a></li>
           <li><a href="/contact/" class="hover:text-stone-50 transition-colors">Contact</a></li>
           <li><a href="/privacy/" class="hover:text-stone-50 transition-colors">Privacy</a></li>
